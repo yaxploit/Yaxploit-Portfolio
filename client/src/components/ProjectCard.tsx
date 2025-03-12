@@ -1,5 +1,10 @@
 import { Github, ExternalLink } from "lucide-react";
 
+/**
+ * ProjectCard Props Interface
+ * 
+ * Defines the properties required for the ProjectCard component.
+ */
 export interface ProjectProps {
   title: string;
   description: string;
@@ -8,6 +13,14 @@ export interface ProjectProps {
   demoUrl: string;
 }
 
+/**
+ * ProjectCard Component
+ * 
+ * Displays a project card with:
+ * - Project image with hover effect
+ * - Title and description
+ * - GitHub and Demo links
+ */
 const ProjectCard = ({
   title,
   description,
@@ -18,11 +31,11 @@ const ProjectCard = ({
   return (
     <div className="bg-card rounded-lg overflow-hidden border border-gray-800 hover:border-primary transition-all duration-300 flex flex-col h-full">
       <div className="p-4">
-        <div className="h-48 overflow-hidden rounded-lg mb-4">
+        <div className="h-48 overflow-hidden rounded-lg mb-4 group">
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110"
+            className="w-full h-full object-cover object-center transition-all duration-300 group-hover:brightness-110 group-hover:scale-105"
           />
         </div>
         <h3 className="text-xl font-bold mb-2">{title}</h3>

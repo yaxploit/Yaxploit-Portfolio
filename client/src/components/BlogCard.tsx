@@ -39,23 +39,32 @@ const BlogCard = ({
 }: BlogProps) => {
   return (
     <div className="bg-card rounded-lg overflow-hidden border border-gray-800 hover:border-primary transition-all duration-300 flex flex-col h-full">
-      <div className="h-48 overflow-hidden">
+      <div className="h-48 overflow-hidden group">
         <img
           src={image}
           alt={title}
-          className="w-full h-full object-cover object-center transition-transform duration-500 hover:scale-110"
+          className="w-full h-full object-cover object-center transition-all duration-300 group-hover:brightness-110 group-hover:scale-105"
         />
       </div>
       <div className="p-6 flex-grow">
-        <div className="flex gap-2 mb-3 flex-wrap">
-          {tags.map((tag) => (
-            <span
-              key={tag}
-              className="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs"
-            >
-              {tag}
-            </span>
-          ))}
+        <div className="flex justify-between items-start mb-3">
+          <div className="flex gap-2 flex-wrap">
+            {tags.map((tag) => (
+              <span
+                key={tag}
+                className="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+          <span className="flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs">
+            {category === "blog" ? (
+              <><BookOpen size={12} /> Blog</>
+            ) : (
+              <><FlaskConical size={12} /> Research</>
+            )}
+          </span>
         </div>
         <h3 className="text-xl font-bold mb-3">{title}</h3>
         <p className="text-gray-400 mb-4">{description}</p>

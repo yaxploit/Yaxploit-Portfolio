@@ -1,11 +1,22 @@
+/**
+ * Project Interface
+ * 
+ * Defines the structure for project data
+ */
 export interface Project {
-  title: string;
-  description: string;
-  image: string;
-  githubUrl: string;
-  demoUrl: string;
+  title: string;        // Name of the project
+  description: string;  // Brief description of what it does
+  image: string;        // URL to the project image
+  githubUrl: string;    // Link to the GitHub repository
+  demoUrl: string;      // Link to a live demo
 }
 
+/**
+ * Projects Data Array
+ * 
+ * This array contains all projects that will be displayed on the site.
+ * Each project has title, description, image, GitHub URL, and demo URL.
+ */
 export const projects: Project[] = [
   {
     title: "VulnScanner Pro",
