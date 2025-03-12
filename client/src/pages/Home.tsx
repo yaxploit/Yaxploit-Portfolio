@@ -14,7 +14,7 @@ const Home = () => {
               Hi There! <span className="wave">👋</span>
             </h2>
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              I'M <span className="text-primary">YASH GAIKWAD (YAXPLOIT)</span>
+              I'M <span className="text-primary">YASH GAIKWAD</span> <span className="text-primary text-2xl md:text-3xl">(yaxploit)</span>
             </h1>
             
             {/* Typewriter effect for different titles */}
@@ -70,11 +70,11 @@ const Home = () => {
 
           {/* Cybersecurity themed image with hover effect */}
           <div className="order-1 lg:order-2 flex justify-center">
-            <div className="relative animate-float max-w-md hover:scale-105 transition-transform duration-300">
+            <div className="relative max-w-md hover:scale-105 transition-transform duration-300 shadow-xl">
               <img
                 src="https://img.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_1150-37336.jpg"
                 alt="Cybersecurity illustration"
-                className="rounded-lg shadow-2xl border-2 border-primary/30"
+                className="rounded-lg border-2 border-primary/30"
               />
             </div>
           </div>

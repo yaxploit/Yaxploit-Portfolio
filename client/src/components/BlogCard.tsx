@@ -1,5 +1,11 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen, FlaskConical } from "lucide-react";
 
+/**
+ * BlogCard Props Interface
+ * 
+ * Defines the properties required for the BlogCard component.
+ * These props match the Blog interface from data/blogs.ts
+ */
 export interface BlogProps {
   title: string;
   description: string;
@@ -8,8 +14,19 @@ export interface BlogProps {
   date: string;
   readTime: string;
   url: string;
+  category: "blog" | "research";
 }
 
+/**
+ * BlogCard Component
+ * 
+ * Displays a card for a blog or research article with:
+ * - Featured image
+ * - Title and description
+ * - Tags and metadata (date, read time)
+ * - Category indicator (blog or research)
+ * - Read more link
+ */
 const BlogCard = ({
   title,
   description,
@@ -18,6 +35,7 @@ const BlogCard = ({
   date,
   readTime,
   url,
+  category,
 }: BlogProps) => {
   return (
     <div className="bg-card rounded-lg overflow-hidden border border-gray-800 hover:border-primary transition-all duration-300 flex flex-col h-full">
