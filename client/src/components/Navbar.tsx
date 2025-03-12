@@ -1,6 +1,19 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Home, User, CodeXml, FileText, Newspaper, Star } from "lucide-react";
+import { Home, User, CodeXml, FileText, Newspaper, MessageSquare } from "lucide-react";
+
+/**
+ * Navbar Component
+ * 
+ * This component creates the navigation bar at the top of all pages.
+ * It includes:
+ * - Logo/brand name linking to home page
+ * - Navigation links to all main pages
+ * - Mobile responsive design with hamburger menu
+ * 
+ * To add a new navigation link:
+ * 1. Add a new entry to the routes array with path, label, and icon
+ */
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,12 +27,20 @@ const Navbar = () => {
     setIsOpen(false);
   };
 
+  /**
+   * Navigation routes
+   * Each object defines a navigation link with:
+   * - path: URL path for the link
+   * - label: Display text
+   * - icon: Icon component to show before the label
+   */
   const routes = [
     { path: "/", label: "Home", icon: <Home className="h-4 w-4" /> },
     { path: "/about", label: "About", icon: <User className="h-4 w-4" /> },
     { path: "/projects", label: "Projects", icon: <CodeXml className="h-4 w-4" /> },
     { path: "/resume", label: "Resume", icon: <FileText className="h-4 w-4" /> },
     { path: "/blogs", label: "Blogs", icon: <Newspaper className="h-4 w-4" /> },
+    { path: "/contact", label: "Contact", icon: <MessageSquare className="h-4 w-4" /> },
   ];
 
   const isActive = (path: string) => {
@@ -53,13 +74,28 @@ const Navbar = () => {
               </Link>
             </div>
           ))}
+          {/* GitHub link with icon */}
           <a
             href="https://github.com/yaxploit"
             target="_blank"
             rel="noreferrer"
-            className="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-md flex items-center gap-1 transition duration-300"
+            className="text-gray-300 hover:text-primary transition-colors duration-300"
+            aria-label="GitHub Profile"
+            title="GitHub Profile"
           >
-            <div className="font-bold text-xl">Y</div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
           </a>
         </div>
 
