@@ -29,24 +29,29 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-card/80 backdrop-blur-md border-b border-gray-800">
       <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
-        <Link href="/">
-          <a className="text-2xl font-bold text-primary transition hover:text-secondary">
+        <div className="text-2xl font-bold text-primary transition hover:text-secondary cursor-pointer">
+          <Link href="/">
             Sb.
-          </a>
-        </Link>
+          </Link>
+        </div>
 
         <div className="hidden md:flex space-x-6 items-center">
           {routes.map((route) => (
-            <Link key={route.path} href={route.path}>
-              <a
-                className={`flex items-center gap-1 hover:text-primary transition ${
-                  isActive(route.path) ? "text-primary" : ""
-                }`}
-                onClick={closeMenu}
-              >
-                {route.icon} {route.label}
-              </a>
-            </Link>
+            <div 
+              key={route.path} 
+              className={`flex items-center gap-1 hover:text-primary transition cursor-pointer ${
+                isActive(route.path) ? "text-primary" : ""
+              }`}
+              onClick={() => {
+                closeMenu();
+              }}
+            >
+              <Link href={route.path}>
+                <div className="flex items-center gap-1">
+                  {route.icon} {route.label}
+                </div>
+              </Link>
+            </div>
           ))}
           <a
             href="https://github.com/soumyajit4419"
@@ -85,16 +90,21 @@ const Navbar = () => {
         <div className="md:hidden bg-card border-t border-gray-800">
           <div className="container mx-auto px-4 py-3 flex flex-col space-y-4">
             {routes.map((route) => (
-              <Link key={route.path} href={route.path}>
-                <a
-                  className={`flex items-center gap-2 hover:text-primary transition ${
-                    isActive(route.path) ? "text-primary" : ""
-                  }`}
-                  onClick={closeMenu}
-                >
-                  {route.icon} {route.label}
-                </a>
-              </Link>
+              <div
+                key={route.path}
+                className={`flex items-center gap-2 hover:text-primary transition cursor-pointer ${
+                  isActive(route.path) ? "text-primary" : ""
+                }`}
+                onClick={() => {
+                  closeMenu();
+                }}
+              >
+                <Link href={route.path}>
+                  <div className="flex items-center gap-2">
+                    {route.icon} {route.label}
+                  </div>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
