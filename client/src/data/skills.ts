@@ -3,46 +3,54 @@ interface Skill {
   icon: string;
 }
 
-// Define skills with icon names
+// Define cybersecurity skills with icon names
 export const skills: Skill[] = [
   {
-    name: "C++",
-    icon: "SiCplusplus",
+    name: "Python",
+    icon: "SiPython",
+  },
+  {
+    name: "Bash",
+    icon: "SiBash",
   },
   {
     name: "JavaScript",
     icon: "SiJavascript",
   },
   {
-    name: "Go",
-    icon: "SiGo",
+    name: "Linux",
+    icon: "SiLinux",
   },
   {
-    name: "Node.js",
-    icon: "SiNodedotjs",
+    name: "Web Security",
+    icon: "SiWebmoney",
   },
   {
-    name: "React",
-    icon: "SiReact",
+    name: "Network Security",
+    icon: "SiWireshark",
   },
   {
-    name: "AWS",
-    icon: "SiAws",
+    name: "OWASP",
+    icon: "SiOwasp",
   },
   {
-    name: "Docker",
-    icon: "SiDocker",
+    name: "Burp Suite",
+    icon: "SiPortswigger",
   },
   {
-    name: "NPM",
-    icon: "SiNpm",
+    name: "SQL Injection",
+    icon: "SiSqlite",
   },
   {
-    name: "Git",
-    icon: "SiGit",
+    name: "Social Engineering",
+    icon: "SiPhishing",
   },
   {
-    name: "Bootstrap",
-    icon: "SiBootstrap",
+    name: "Kali Linux",
+    icon: "SiKalilinux",
+  },
+  {
+    name: "Penetration Testing",
+    icon: "SiHackaday",
   },
 ];

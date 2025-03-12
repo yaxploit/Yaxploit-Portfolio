@@ -5,23 +5,51 @@ interface Tool {
 
 export const tools: Tool[] = [
   {
-    name: "macOS",
-    icon: "SiApple",
+    name: "Kali Linux",
+    icon: "SiKalilinux",
   },
   {
-    name: "VS Code",
-    icon: "SiVisualstudiocode",
+    name: "Metasploit",
+    icon: "SiRapidapi",
   },
   {
-    name: "Postman",
-    icon: "SiPostman",
+    name: "Burp Suite",
+    icon: "SiPortswigger",
   },
   {
-    name: "Slack",
-    icon: "SiSlack",
+    name: "Wireshark",
+    icon: "SiWireshark",
   },
   {
-    name: "Figma",
-    icon: "SiFigma",
+    name: "Nmap",
+    icon: "SiGnuprivacyguard",
+  },
+  {
+    name: "OWASP ZAP",
+    icon: "SiOwasp",
+  },
+  {
+    name: "John the Ripper",
+    icon: "SiOpenssl",
+  },
+  {
+    name: "Hashcat",
+    icon: "SiHackaday",
+  },
+  {
+    name: "Nessus",
+    icon: "SiOpenbugbounty",
+  },
+  {
+    name: "Aircrack-ng",
+    icon: "SiWifi",
+  },
+  {
+    name: "Ghidra",
+    icon: "SiReverbnation",
+  },
+  {
+    name: "IDA Pro",
+    icon: "SiRedhat",
   },
 ];

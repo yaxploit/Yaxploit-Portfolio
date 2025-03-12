@@ -10,37 +10,37 @@ const SocialLinks = ({ className = "", showText = false }: SocialLinksProps) => 
   const socialLinks = [
     {
       name: "GitHub",
-      url: "https://github.com/soumyajit4419",
+      url: "https://github.com/yaxploit",
       icon: <Github />,
     },
     {
       name: "Twitter",
-      url: "https://twitter.com/soumyajit4419",
+      url: "https://twitter.com/yaxploit",
       icon: <Twitter />,
     },
     {
       name: "LinkedIn",
-      url: "https://linkedin.com/in/soumyajit4419",
+      url: "https://linkedin.com/in/yashgaikwad",
       icon: <Linkedin />,
     },
     {
       name: "Instagram",
-      url: "https://instagram.com/soumyajit4419",
+      url: "https://instagram.com/yaxploits",
       icon: <Instagram />,
     },
     {
       name: "HackerOne",
-      url: "https://hackerone.com/soumyajit4419",
+      url: "https://hackerone.com/yaxploit",
       icon: <SiHackerone size={20} />,
     },
     {
       name: "BugCrowd",
-      url: "https://bugcrowd.com/soumyajit4419",
+      url: "https://bugcrowd.com/yaxploit",
       icon: <SiBugcrowd size={20} />,
     },
     {
       name: "TryHackMe",
-      url: "https://tryhackme.com/p/soumyajit4419",
+      url: "https://tryhackme.com/p/yaxploit",
       icon: <SiTryhackme size={20} />,
     },
   ];

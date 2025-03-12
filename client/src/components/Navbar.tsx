@@ -31,7 +31,7 @@ const Navbar = () => {
       <nav className="container mx-auto px-4 py-3 flex justify-between items-center">
         <div className="text-2xl font-bold text-primary transition hover:text-secondary cursor-pointer">
           <Link href="/">
-            Sb.
+            Yaxploit
           </Link>
         </div>
 
@@ -54,12 +54,12 @@ const Navbar = () => {
             </div>
           ))}
           <a
-            href="https://github.com/soumyajit4419"
+            href="https://github.com/yaxploit"
             target="_blank"
             rel="noreferrer"
             className="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-md flex items-center gap-1 transition duration-300"
           >
-            <Star className="h-4 w-4" />
+            <div className="font-bold text-xl">Y</div>
           </a>
         </div>
 
