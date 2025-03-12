@@ -53,4 +53,32 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/yaxploit/crypto-vault",
     demoUrl: "https://cryptovault.yaxploit.com",
   },
+  {
+    title: "MalwareAnalyzer",
+    description: "A sandbox environment for safely analyzing malicious code. Features behavioral analysis, network traffic monitoring, and automated reporting of indicators of compromise (IOCs).",
+    image: "https://img.freepik.com/free-vector/virus-disinfection-concept_23-2148481291.jpg",
+    githubUrl: "https://github.com/yaxploit/malware-analyzer",
+    demoUrl: "https://malware-lab.yaxploit.com",
+  },
+  {
+    title: "SecureCodeTrainer",
+    description: "An interactive training platform that teaches secure coding practices through real-world vulnerable code examples. Contains challenges for various languages and frameworks.",
+    image: "https://img.freepik.com/free-vector/code-typing-concept-illustration_114360-3581.jpg",
+    githubUrl: "https://github.com/yaxploit/secure-code-trainer",
+    demoUrl: "https://secure-training.yaxploit.com",
+  },
+  {
+    title: "ThreatIntel Dashboard",
+    description: "A centralized dashboard for threat intelligence gathering and analysis. Aggregates data from multiple sources and visualizes emerging threats with customizable risk scores.",
+    image: "https://img.freepik.com/free-vector/gradient-infographic-dashboard-concept_52683-29182.jpg",
+    githubUrl: "https://github.com/yaxploit/threat-intel-dashboard",
+    demoUrl: "https://threatintel.yaxploit.com",
+  },
+  {
+    title: "IoT Security Scanner",
+    description: "A specialized tool for auditing IoT device security. Identifies insecure configurations, weak credentials, outdated firmware, and communication protocol vulnerabilities.",
+    image: "https://img.freepik.com/free-vector/internet-things-concept-illustration_114360-2123.jpg",
+    githubUrl: "https://github.com/yaxploit/iot-security-scanner",
+    demoUrl: "https://iot-scanner.yaxploit.com",
+  },
 ];
