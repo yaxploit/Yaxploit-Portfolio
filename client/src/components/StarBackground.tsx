@@ -16,8 +16,8 @@ const StarBackground = () => {
     if (!containerRef.current) return;
     
     const container = containerRef.current;
-    const starCount = 100;
-    const shootingStarCount = 3; // Limited number of shooting stars
+    const starCount = 200; // Increased star count for more density
+    const shootingStarCount = 5; // More shooting stars in queue
     
     // Clear existing stars
     container.innerHTML = '';
@@ -27,18 +27,23 @@ const StarBackground = () => {
       const star = document.createElement('div');
       star.className = 'star';
       
+      // Randomize star size and brightness
+      const size = Math.random() * 2.5 + 0.5; // 0.5px to 3px
+      const brightness = Math.random() * 0.3 + 0.2; // 0.2 to 0.5 opacity
+      
       // Apply styles
       Object.assign(star.style, {
         position: 'absolute',
-        width: `${Math.random() * 2 + 1}px`,
-        height: `${Math.random() * 2 + 1}px`,
+        width: `${size}px`,
+        height: `${size}px`,
         backgroundColor: 'white',
         borderRadius: '50%',
-        opacity: '0.2',
+        opacity: `${brightness}`,
         left: `${Math.random() * 100}%`,
         top: `${Math.random() * 100}%`,
         animation: `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`,
         animationDelay: `${Math.random() * 5}s`,
+        boxShadow: size > 2 ? '0 0 2px 1px rgba(255, 255, 255, 0.3)' : 'none', // Glow for larger stars
       });
       
       container.appendChild(star);
@@ -48,12 +53,29 @@ const StarBackground = () => {
     const createShootingStar = () => {
       const shootingStar = document.createElement('div');
       
-      // Random starting position at top of screen with random angle
-      const startingX = Math.random() * 100;
-      const angle = Math.random() * 40 + 20; // 20-60 degrees
+      // Random position on screen - can start from different parts (not just top)
+      const randomPosition = Math.random();
+      const startingX = Math.random() * 70 + 15; // 15-85% of screen width
+      const startingY = randomPosition < 0.6 ? Math.random() * 30 : 0; // 60% chance to start from top 30% of screen
       
-      // Calculate end position based on angle
-      const endX = startingX + (angle / 2);
+      // Random travel distance - not always full screen
+      const travelDistance = Math.random() * 50 + 20; // 20-70% of screen height
+      const endY = Math.min(100, startingY + travelDistance);
+      
+      // Random angle for diagonal movement
+      const angle = Math.random() * 35 + 10; // 10-45 degrees 
+      
+      // Direction of travel (left or right)
+      const direction = Math.random() > 0.5 ? 1 : -1;
+      
+      // Calculate end position based on angle and direction
+      const endX = startingX + (angle / 2) * direction;
+      
+      // Random tail length
+      const tailLength = Math.random() * 20 + 10; // 10-30px
+      
+      // Random brightness 
+      const brightness = Math.random() * 0.4 + 0.6; // 0.6-1.0
       
       // Style the shooting star
       Object.assign(shootingStar.style, {
@@ -61,43 +83,44 @@ const StarBackground = () => {
         width: '2px',
         height: '2px',
         backgroundColor: 'white',
-        boxShadow: '0 0 3px 1px rgba(255, 255, 255, 0.6)',
+        boxShadow: `0 0 3px 1px rgba(255, 255, 255, ${brightness * 0.6})`,
         borderRadius: '50%',
         left: `${startingX}%`,
-        top: '0%',
+        top: `${startingY}%`,
         opacity: '0',
-        transform: 'rotate(45deg) scale(1)',
+        transform: direction > 0 ? 'rotate(45deg)' : 'rotate(135deg)', // Adjust angle based on direction
         zIndex: '1',
       });
       
-      // Append first to modify later with animation
+      // Append to container
       container.appendChild(shootingStar);
+      
+      // Random duration for animation
+      const duration = 700 + Math.random() * 1300; // 0.7-2 seconds
       
       // Add animation with keyframes for shooting star effect
       shootingStar.animate([
         { // Start state
           opacity: 0,
           left: `${startingX}%`,
-          top: '0%',
-          boxShadow: '0 0 3px 1px rgba(255, 255, 255, 0.1)',
-          transform: 'rotate(45deg) scale(1)'
+          top: `${startingY}%`,
+          boxShadow: `0 0 3px 1px rgba(255, 255, 255, ${brightness * 0.2})`,
         },
         { // Mid state (visible, trailing)
-          opacity: 1,
-          left: `${(startingX + endX) / 2 + 5}%`,
-          top: '50%',
-          boxShadow: '0 0 5px 2px rgba(255, 255, 255, 0.7), 0 0 20px 5px rgba(255, 255, 255, 0.5)',
-          transform: 'rotate(45deg) scale(1.5)'
+          opacity: brightness,
+          left: `${(startingX + endX) / 2}%`,
+          top: `${(startingY + endY) / 2}%`,
+          boxShadow: `0 0 5px 2px rgba(255, 255, 255, ${brightness * 0.7}), 
+                     0 0 ${tailLength}px ${tailLength/2}px rgba(255, 255, 255, ${brightness * 0.5})`,
         },
         { // End state
           opacity: 0,
-          left: `${endX + 15}%`,
-          top: '100%',
-          boxShadow: '0 0 3px 1px rgba(255, 255, 255, 0.1)',
-          transform: 'rotate(45deg) scale(1)'
+          left: `${endX}%`,
+          top: `${endY}%`,
+          boxShadow: `0 0 3px 1px rgba(255, 255, 255, ${brightness * 0.2})`,
         }
       ], {
-        duration: 1500 + Math.random() * 1000, // 1.5-2.5 seconds
+        duration: duration,
         easing: 'ease-out',
         fill: 'forwards'
       });
@@ -107,25 +130,29 @@ const StarBackground = () => {
         if (container.contains(shootingStar)) {
           container.removeChild(shootingStar);
         }
-      }, 3000);
+      }, duration + 100);
     };
     
-    // Randomly create shooting stars
-    const triggerShootingStars = () => {
-      // Only create a shooting star 20% of the time to make them rare
-      if (Math.random() < 0.2) {
-        createShootingStar();
+    // Regularly create shooting stars at a more frequent interval
+    const createShootingStarsRegularly = () => {
+      // Create initial shooting stars
+      for (let i = 0; i < shootingStarCount; i++) {
+        setTimeout(() => {
+          createShootingStar();
+        }, Math.random() * 2000); // Spread initial stars over 2 seconds
       }
       
-      // Schedule next one at random interval (7-20 seconds)
-      const nextDelay = 7000 + Math.random() * 13000;
-      setTimeout(triggerShootingStars, nextDelay);
+      // Set up regular interval for new shooting stars (every 3-4 seconds)
+      setInterval(() => {
+        // Only create a shooting star 80% of the time
+        if (Math.random() < 0.8) {
+          createShootingStar();
+        }
+      }, 3000 + Math.random() * 1000); // 3-4 second interval
     };
     
-    // Initial delays for the first few shooting stars
-    for (let i = 0; i < shootingStarCount; i++) {
-      setTimeout(triggerShootingStars, 3000 + i * 8000);
-    }
+    // Start the shooting star creation
+    createShootingStarsRegularly();
     
     // Cleanup function
     return () => {

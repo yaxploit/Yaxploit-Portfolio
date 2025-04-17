@@ -13,20 +13,13 @@ import { useState, useEffect } from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import resumeImage from "../assets/Yash resume  no introdction.jpg";
+import resumePDF from "../assets/Yash resume  no introdction.pdf";
 
 const Resume = () => {
-  const [pdfUrl, setPdfUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    // In a production environment, you'd probably fetch the PDF 
-    // from a CDN or server, but for this example, we'll use a static import
-    setPdfUrl("./attached_assets/Yash resume  no introdction.pdf");
-  }, []);
-
   const handleDownload = () => {
     // Create a link element
     const link = document.createElement("a");
-    link.href = pdfUrl || "";
+    link.href = resumePDF;
     link.download = "yash_gaikwad_resume.pdf";
     document.body.appendChild(link);
     link.click();
