@@ -12,6 +12,7 @@
 import { useState, useEffect } from "react";
 import { Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import resumeImage from "../assets/Yash resume  no introdction.jpg";
 
 const Resume = () => {
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
@@ -57,7 +58,7 @@ const Resume = () => {
           {/* Resume Image */}
           <div className="flex justify-center p-4">
             <img 
-              src="./attached_assets/Yash resume  no introdction.jpg" 
+              src={resumeImage}
               alt="Yash Gaikwad's Resume" 
               className="w-full h-auto max-h-[800px] object-contain rounded shadow-lg"
             />
