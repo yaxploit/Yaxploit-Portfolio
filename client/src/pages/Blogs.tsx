@@ -1,6 +1,5 @@
 import { BookOpen, FlaskConical, Newspaper } from "lucide-react";
 import BlogCard from "@/components/BlogCard";
-import ContactForm from "@/components/ContactForm";
 import { blogs } from "@/data/blogs";
 import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -92,19 +91,6 @@ const Blogs = () => {
               <span>View All Publications</span>
             </a>
           </div>
-        </div>
-      </section>
-
-      <section id="contact" className="py-16 bg-card/50">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-4">
-            Get In <span className="text-primary">Touch</span>
-          </h2>
-          <p className="text-center text-gray-400 mb-16">
-            Feel free to contact me for any questions or opportunities
-          </p>
-
-          <ContactForm />
         </div>
       </section>
     </div>
