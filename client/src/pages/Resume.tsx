@@ -19,7 +19,7 @@ const Resume = () => {
   useEffect(() => {
     // In a production environment, you'd probably fetch the PDF 
     // from a CDN or server, but for this example, we'll use a static import
-    setPdfUrl("/src/assets/resume.pdf");
+    setPdfUrl("./attached_assets/Yash resume  no introdction.pdf");
   }, []);
 
   const handleDownload = () => {
@@ -57,9 +57,9 @@ const Resume = () => {
           {/* Resume Image */}
           <div className="flex justify-center p-4">
             <img 
-              src="/attached_assets/Yash resume  no introdction.jpg" 
+              src="./attached_assets/Yash resume  no introdction.jpg" 
               alt="Yash Gaikwad's Resume" 
-              className="w-full h-auto object-contain rounded shadow-lg"
+              className="w-full h-auto max-h-[800px] object-contain rounded shadow-lg"
             />
           </div>
         </div>
