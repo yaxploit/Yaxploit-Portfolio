@@ -66,18 +66,27 @@ const ContactForm = () => {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Contact Illustration - Left Side */}
       <div>
-        <div className="animate-float">
+        <div className="relative overflow-hidden rounded-lg shadow-2xl group">
           <img
             src="https://img.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899173.jpg?w=740"
             alt="Contact illustration"
-            className="rounded-lg shadow-2xl"
+            className="rounded-lg shadow-2xl transition-all duration-500 group-hover:scale-110"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+            <div className="p-4 text-white">
+              <p className="font-bold text-lg">Get in Touch</p>
+              <p className="text-sm text-gray-300">I'm available for security consultations</p>
+            </div>
+          </div>
         </div>
       </div>
 
+      {/* Contact Form - Right Side */}
       <div>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          {/* Name Input */}
           <div>
             <Label htmlFor="name">Name</Label>
             <Input
@@ -91,6 +100,7 @@ const ContactForm = () => {
             )}
           </div>
 
+          {/* Email Input */}
           <div>
             <Label htmlFor="email">Email</Label>
             <Input
@@ -105,6 +115,7 @@ const ContactForm = () => {
             )}
           </div>
 
+          {/* Message Textarea */}
           <div>
             <Label htmlFor="message">Message</Label>
             <Textarea
@@ -119,6 +130,7 @@ const ContactForm = () => {
             )}
           </div>
 
+          {/* Submit Button */}
           <Button
             type="submit"
             className="w-full bg-primary hover:bg-secondary transition-all duration-300"
@@ -151,6 +163,7 @@ const ContactForm = () => {
           </Button>
         </form>
 
+        {/* Quick Contact Info */}
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="flex items-center gap-4">
             <div className="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center text-primary">
@@ -158,7 +171,7 @@ const ContactForm = () => {
             </div>
             <div>
               <h4 className="text-lg font-medium">Location</h4>
-              <p className="text-gray-400">Bhubaneswar, India</p>
+              <p className="text-gray-400">Mumbai, India</p>
             </div>
           </div>
 
@@ -168,7 +181,7 @@ const ContactForm = () => {
             </div>
             <div>
               <h4 className="text-lg font-medium">Email</h4>
-              <p className="text-gray-400">contact@soumyajit.tech</p>
+              <p className="text-gray-400">contact@yaxploit.com</p>
             </div>
           </div>
         </div>
