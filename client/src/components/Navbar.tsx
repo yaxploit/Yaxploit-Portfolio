@@ -86,9 +86,9 @@ const Navbar = () => {
       {/* Star View Overlay - only visible when star view is active */}
       {isStarViewActive && (
         <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none">
-          <div className="text-white text-center p-4 absolute top-24 bg-black/30 backdrop-blur-sm rounded-lg">
-            <p className="text-lg">Star View Mode</p>
-            <p className="text-sm text-gray-400 mt-2">Press the star icon again to exit</p>
+          <div className="text-center p-4 absolute top-24 bg-black/30 backdrop-blur-sm rounded-lg border border-primary/20">
+            <p className="text-lg font-semibold text-primary">Star View Mode</p>
+            <p className="text-sm text-primary/70 mt-2 font-light">Press the star icon again to exit</p>
           </div>
         </div>
       )}
