@@ -16,8 +16,8 @@ const StarBackground = () => {
     if (!containerRef.current) return;
     
     const container = containerRef.current;
-    const starCount = 200; // Increased star count for more density
-    const shootingStarCount = 5; // More shooting stars in queue
+    const starCount = 400; // Doubled star count for much higher density
+    const shootingStarCount = 10; // More shooting stars in queue
     
     // Clear existing stars
     container.innerHTML = '';
@@ -71,8 +71,8 @@ const StarBackground = () => {
       // Calculate end position based on angle and direction
       const endX = startingX + (angle / 2) * direction;
       
-      // Random tail length
-      const tailLength = Math.random() * 20 + 10; // 10-30px
+      // Random tail length - increased for more visible tails
+      const tailLength = Math.random() * 35 + 20; // 20-55px
       
       // Random brightness 
       const brightness = Math.random() * 0.4 + 0.6; // 0.6-1.0
@@ -133,22 +133,27 @@ const StarBackground = () => {
       }, duration + 100);
     };
     
-    // Regularly create shooting stars at a more frequent interval
-    const createShootingStarsRegularly = () => {
-      // Create initial shooting stars
-      for (let i = 0; i < shootingStarCount; i++) {
+    // Create multiple shooting stars at once
+    const createMultipleShootingStars = (count: number) => {
+      for (let i = 0; i < count; i++) {
+        // Stagger the creation slightly for natural effect
         setTimeout(() => {
           createShootingStar();
-        }, Math.random() * 2000); // Spread initial stars over 2 seconds
+        }, Math.random() * 300); // Spread creation over 300ms
       }
+    };
+    
+    // Regularly create shooting stars at a much more frequent interval
+    const createShootingStarsRegularly = () => {
+      // Create initial shooting stars
+      createMultipleShootingStars(shootingStarCount);
       
-      // Set up regular interval for new shooting stars (every 3-4 seconds)
+      // Create 1-3 shooting stars every 1-2 seconds
       setInterval(() => {
-        // Only create a shooting star 80% of the time
-        if (Math.random() < 0.8) {
-          createShootingStar();
-        }
-      }, 3000 + Math.random() * 1000); // 3-4 second interval
+        // Number of stars to create in this batch (1-3)
+        const starsToCreate = Math.floor(Math.random() * 3) + 1;
+        createMultipleShootingStars(starsToCreate);
+      }, 1000 + Math.random() * 1000); // 1-2 second interval
     };
     
     // Start the shooting star creation

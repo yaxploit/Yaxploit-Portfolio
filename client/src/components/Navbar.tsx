@@ -1,6 +1,12 @@
+/**
+ * Navbar Component
+ * 
+ * This component creates the main navigation bar that appears at the top of all pages.
+ * It includes the logo/brand name, navigation links, and a star view toggle.
+ */
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Home, User, CodeXml, FileText, Newspaper, MessageSquare } from "lucide-react";
+import { Home, User, CodeXml, FileText, Newspaper, MessageSquare, Star } from "lucide-react";
 
 /**
  * Navbar Component
@@ -18,6 +24,8 @@ import { Home, User, CodeXml, FileText, Newspaper, MessageSquare } from "lucide-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [location] = useLocation();
+  // State to track if star view is active (only showing stars)
+  const [isStarViewActive, setIsStarViewActive] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);

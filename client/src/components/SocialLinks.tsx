@@ -1,4 +1,12 @@
-import { Github, Twitter, Linkedin, Instagram } from "lucide-react";
+/**
+ * SocialLinks Component
+ * 
+ * This component displays social media and hacking platform links.
+ * Links open in a new tab when clicked.
+ * 
+ * The component can display icons only or icons with text labels.
+ */
+import { Github, Linkedin } from "lucide-react";
 import { SiHackerone, SiBugcrowd, SiTryhackme } from "react-icons/si";
 
 interface SocialLinksProps {
@@ -7,6 +15,10 @@ interface SocialLinksProps {
 }
 
 const SocialLinks = ({ className = "", showText = false }: SocialLinksProps) => {
+  // Array of social media and platform links
+  // To add a new platform:
+  // 1. Add a new object to this array
+  // 2. Include name, URL, and icon
   const socialLinks = [
     {
       name: "GitHub",
@@ -14,19 +26,9 @@ const SocialLinks = ({ className = "", showText = false }: SocialLinksProps) => 
       icon: <Github />,
     },
     {
-      name: "Twitter",
-      url: "https://twitter.com/yaxploit",
-      icon: <Twitter />,
-    },
-    {
       name: "LinkedIn",
       url: "https://linkedin.com/in/yashgaikwad",
       icon: <Linkedin />,
-    },
-    {
-      name: "Instagram",
-      url: "https://instagram.com/yaxploits",
-      icon: <Instagram />,
     },
     {
       name: "HackerOne",

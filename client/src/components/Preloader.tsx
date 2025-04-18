@@ -45,8 +45,8 @@ const Preloader = () => {
         </div>
         
         {/* Security-themed text that appears letter by letter */}
-        <div className="mt-4 text-xl text-[#a78bfa] font-mono">
-          <span className="inline-block animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5">
+        <div className="mt-4 text-xl text-[#a78bfa]">
+          <span className="inline-block animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-white pr-5 font-bold">
             YAXPLOIT SEC
           </span>
         </div>
