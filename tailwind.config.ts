@@ -4,6 +4,11 @@ export default {
   darkMode: ["class"],
   content: ["./client/index.html", "./client/src/**/*.{js,jsx,ts,tsx}"],
   theme: {
+    fontFamily: {
+      // Using modern sans-serif fonts to match resume style
+      sans: ['Inter', 'Poppins', 'system-ui', 'sans-serif'],
+      mono: ['Menlo', 'Monaco', 'Consolas', 'monospace'],
+    },
     extend: {
       borderRadius: {
         lg: "var(--radius)",
