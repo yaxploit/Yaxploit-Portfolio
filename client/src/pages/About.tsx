@@ -19,7 +19,8 @@ import { skills } from "@/data/skills";
 import { tools } from "@/data/tools";
 import { 
   ShieldAlert, Newspaper, CupSoda, Trophy, Bug, Terminal, 
-  Shield, Code, Cloud, Lock, Network, Wifi, FileText, Book
+  Shield, Code, Cloud, Lock, Network, Wifi, FileText, Book,
+  Award, Briefcase, Calendar, GraduationCap, Clock, Building
 } from "lucide-react";
 
 const About = () => {
@@ -177,6 +178,219 @@ const About = () => {
           </div>
         </div>
 
+        {/* Certifications Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-center mb-6">
+            Professional <span className="text-primary">Certifications</span>
+          </h2>
+          <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            I continuously update my knowledge and skills through industry-recognized certifications that validate my expertise in various cybersecurity domains.
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-4">
+            {/* OSCP Certification */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <Award className="text-primary h-10 w-10 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold">OSCP</h3>
+                  <p className="text-primary text-sm">Offensive Security Certified Professional</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Calendar className="h-4 w-4" />
+                    <span>Issued: March 2022</span>
+                  </div>
+                  <p className="mt-3 text-gray-400">
+                    Advanced penetration testing certification demonstrating practical skills in exploiting vulnerabilities and conducting security assessments.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CEH Certification */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <Award className="text-primary h-10 w-10 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold">CEH</h3>
+                  <p className="text-primary text-sm">Certified Ethical Hacker</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Calendar className="h-4 w-4" />
+                    <span>Issued: August 2021</span>
+                  </div>
+                  <p className="mt-3 text-gray-400">
+                    Industry-standard certification covering a wide range of security concepts, tools, and techniques used in ethical hacking.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CompTIA Security+ */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <Award className="text-primary h-10 w-10 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold">CompTIA Security+</h3>
+                  <p className="text-primary text-sm">Security Certification</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Calendar className="h-4 w-4" />
+                    <span>Issued: January 2021</span>
+                  </div>
+                  <p className="mt-3 text-gray-400">
+                    Foundation-level security certification validating the core skills required to perform security functions and pursue a career in IT security.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* CISSP (In progress) */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <Award className="text-primary h-10 w-10 flex-shrink-0 opacity-70" />
+                <div>
+                  <h3 className="text-xl font-semibold">CISSP</h3>
+                  <p className="text-primary text-sm">Certified Information Systems Security Professional</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Clock className="h-4 w-4" />
+                    <span>In Progress</span>
+                  </div>
+                  <p className="mt-3 text-gray-400">
+                    Advanced security certification covering the design, implementation, and management of cybersecurity programs.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* eJPT */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <Award className="text-primary h-10 w-10 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold">eJPT</h3>
+                  <p className="text-primary text-sm">eLearnSecurity Junior Penetration Tester</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Calendar className="h-4 w-4" />
+                    <span>Issued: May 2020</span>
+                  </div>
+                  <p className="mt-3 text-gray-400">
+                    Entry-level penetration testing certification covering basic IT, networking, and penetration testing concepts.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* AWS Security Specialist */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex items-start gap-4">
+                <Award className="text-primary h-10 w-10 flex-shrink-0" />
+                <div>
+                  <h3 className="text-xl font-semibold">AWS Security Specialist</h3>
+                  <p className="text-primary text-sm">Amazon Web Services</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Calendar className="h-4 w-4" />
+                    <span>Issued: October 2022</span>
+                  </div>
+                  <p className="mt-3 text-gray-400">
+                    Specialization in securing cloud infrastructure and applications on the AWS platform.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Professional Experience Section */}
+        <div className="mb-20">
+          <h2 className="text-3xl font-bold text-center mb-6">
+            Professional <span className="text-primary">Experience</span>
+          </h2>
+          <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+            My career path in cybersecurity has allowed me to work with diverse organizations and tackle complex security challenges.
+          </p>
+
+          <div className="space-y-6">
+            {/* Job 1 */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="md:w-1/4">
+                  <h3 className="text-xl font-semibold">Security Researcher</h3>
+                  <p className="text-primary">CyberShield Inc.</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Calendar className="h-4 w-4" />
+                    <span>2022 - Present</span>
+                  </div>
+                  <div className="flex items-center gap-2 mt-1 text-gray-400 text-sm">
+                    <Building className="h-4 w-4" />
+                    <span>Mumbai, India</span>
+                  </div>
+                </div>
+                <div className="md:w-3/4">
+                  <ul className="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Leading a team of 4 security analysts in conducting penetration tests for enterprise clients</li>
+                    <li>Discovered and reported over 30 critical vulnerabilities in banking applications</li>
+                    <li>Developed custom security tools for internal use and client assessments</li>
+                    <li>Presented findings to executives and provided remediation guidance</li>
+                    <li>Conducted security training sessions for development teams</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Job 2 */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="md:w-1/4">
+                  <h3 className="text-xl font-semibold">Penetration Tester</h3>
+                  <p className="text-primary">SecureNet Technologies</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Calendar className="h-4 w-4" />
+                    <span>2020 - 2022</span>
+                  </div>
+                  <div className="flex items-center gap-2 mt-1 text-gray-400 text-sm">
+                    <Building className="h-4 w-4" />
+                    <span>Pune, India</span>
+                  </div>
+                </div>
+                <div className="md:w-3/4">
+                  <ul className="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Performed black-box and gray-box penetration tests for financial and healthcare clients</li>
+                    <li>Specialized in web application security assessments and API testing</li>
+                    <li>Created detailed reports with risk ratings and remediation recommendations</li>
+                    <li>Assisted in developing the company's security testing methodology</li>
+                    <li>Participated in security research initiatives and bug bounty programs</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* Job 3 */}
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="md:w-1/4">
+                  <h3 className="text-xl font-semibold">Security Analyst</h3>
+                  <p className="text-primary">TechDefend Solutions</p>
+                  <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                    <Calendar className="h-4 w-4" />
+                    <span>2018 - 2020</span>
+                  </div>
+                  <div className="flex items-center gap-2 mt-1 text-gray-400 text-sm">
+                    <Building className="h-4 w-4" />
+                    <span>Bengaluru, India</span>
+                  </div>
+                </div>
+                <div className="md:w-3/4">
+                  <ul className="list-disc list-inside text-gray-300 space-y-2">
+                    <li>Monitored security incidents and alerts in a 24/7 SOC environment</li>
+                    <li>Performed vulnerability assessments and basic penetration testing</li>
+                    <li>Implemented SIEM solutions and created custom detection rules</li>
+                    <li>Assisted with incident response and forensic investigations</li>
+                    <li>Developed and maintained security documentation and procedures</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Penetration Testing Arsenal */}
         <div className="mb-20">
           <h2 className="text-3xl font-bold text-center mb-6">
@@ -220,15 +434,49 @@ const About = () => {
         </div>
 
         {/* Hacking Activity */}
-        <div>
+        <div className="mb-10">
           <h2 className="text-3xl font-bold text-center mb-6">
             Hacking <span className="text-primary">Activity</span>
           </h2>
           <p className="text-center text-gray-400 max-w-3xl mx-auto mb-12">
             My continuous commitment to security research and contribution to open-source security projects.
           </p>
+          
+          {/* Activity Stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-12">
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 text-center">
+              <div className="text-4xl font-bold text-primary mb-2">35+</div>
+              <div className="text-gray-300 font-medium">CVEs Discovered</div>
+              <p className="text-gray-400 text-sm mt-2">Vulnerabilities found and reported to vendors</p>
+            </div>
+            
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 text-center">
+              <div className="text-4xl font-bold text-primary mb-2">150+</div>
+              <div className="text-gray-300 font-medium">Bug Bounties</div>
+              <p className="text-gray-400 text-sm mt-2">Successfully submitted and rewarded vulnerabilities</p>
+            </div>
+            
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 text-center">
+              <div className="text-4xl font-bold text-primary mb-2">25+</div>
+              <div className="text-gray-300 font-medium">CTF Competitions</div>
+              <p className="text-gray-400 text-sm mt-2">Participated in global capture the flag events</p>
+            </div>
+            
+            <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300 text-center">
+              <div className="text-4xl font-bold text-primary mb-2">12+</div>
+              <div className="text-gray-300 font-medium">Open Source Tools</div>
+              <p className="text-gray-400 text-sm mt-2">Security tools published on GitHub</p>
+            </div>
+          </div>
 
-          <CodeCalendar />
+          {/* Calendar with commits */}
+          <div className="bg-card p-6 rounded-lg border border-primary/20">
+            <h3 className="text-xl font-medium mb-6 text-center">GitHub Contribution Calendar</h3>
+            <CodeCalendar />
+            <p className="text-center text-gray-400 text-sm mt-6">
+              Each block represents my daily contributions to security projects and research
+            </p>
+          </div>
         </div>
       </div>
     </section>

@@ -1,21 +1,40 @@
 /**
  * Project Interface
  * 
- * Defines the structure for project data
+ * Defines the structure for cybersecurity project data.
+ * 
+ * HOW TO USE:
+ * - When adding a new project, copy an existing project object and modify its properties.
+ * - Each project must have all of the properties defined below.
+ * - Images can be stored in the /public folder or use external URLs (https://...).
+ * - For local images, use the path like "/images/your-image.jpg".
  */
 export interface Project {
-  title: string;        // Name of the project
-  description: string;  // Brief description of what it does
-  image: string;        // URL to the project image
-  githubUrl: string;    // Link to the GitHub repository
-  demoUrl: string;      // Link to a live demo
+  title: string;        // Name of the project (required)
+  description: string;  // Brief description of what it does (required)
+  image: string;        // URL to the project image (required)
+  githubUrl: string;    // Link to the GitHub repository (required)
+  demoUrl: string;      // Link to a live demo (required)
 }
 
 /**
  * Projects Data Array
  * 
  * This array contains all projects that will be displayed on the site.
- * Each project has title, description, image, GitHub URL, and demo URL.
+ * Projects will be displayed in the order they appear here (first to last).
+ * 
+ * HOW TO ADD A NEW PROJECT:
+ * 1. Copy one of the existing project objects including the enclosing curly braces {}.
+ * 2. Paste it where you want it to appear in the display order.
+ * 3. Update all of the properties with your new project information.
+ * 4. Make sure to add a comma after the closing brace if it's not the last project.
+ * 
+ * HOW TO REMOVE A PROJECT:
+ * 1. Delete the entire project object including the enclosing curly braces {}.
+ * 2. Make sure to remove any trailing comma or add a comma to the project before it if needed.
+ * 
+ * HOW TO EDIT A PROJECT:
+ * 1. Simply find the project object you want to edit and update its properties.
  */
 export const projects: Project[] = [
   {

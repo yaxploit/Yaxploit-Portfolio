@@ -1,32 +1,50 @@
 /**
  * Blog Interface
  * 
- * Defines the structure for blog and research post data
+ * Defines the structure for blog and research post data.
+ * 
+ * HOW TO USE:
+ * - When adding a new post, copy an existing blog/research object and modify its properties.
+ * - Each post must have all of the properties defined below.
+ * - For the category, use "blog" for regular blog posts or "research" for research papers.
+ * - Images can be stored in the /public folder or use external URLs (https://...).
+ * - For local images, use the path like "/images/your-image.jpg".
+ * - Make sure tags are relevant to the content for better organization.
  */
 export interface Blog {
-  title: string;       // Title of the blog post
-  description: string; // Summary of the content
-  image: string;       // URL to the featured image
-  tags: string[];      // Array of related topic tags
-  date: string;        // Publication date
-  readTime: string;    // Estimated reading time
-  url: string;         // URL to the full article
-  category: "blog" | "research"; // Type of content (blog or research)
+  title: string;       // Title of the blog post (required)
+  description: string; // Summary of the content (required)
+  image: string;       // URL to the featured image (required)
+  tags: string[];      // Array of related topic tags (required)
+  date: string;        // Publication date (required, format: "Month Day, Year")
+  readTime: string;    // Estimated reading time (required, format: "X min read")
+  url: string;         // URL to the full article (required)
+  category: "blog" | "research"; // Type of content - "blog" or "research" (required)
 }
 
 /**
  * Blog Data Array 
  * 
- * This array contains all blog posts that will be displayed on the site.
- * Each blog object has the following properties:
- * - title: The title of the blog post
- * - description: A brief summary of the content
- * - image: URL to the featured image
- * - tags: Array of relevant topic tags
- * - date: Publication date
- * - readTime: Estimated time to read the article
- * - url: Link to the full blog post
- * - category: Either "blog" or "research" to determine which tab it appears in
+ * This array contains all blog posts and research papers that will be displayed on the site.
+ * Posts will be displayed in the order they appear here (first to last) within each category tab.
+ * 
+ * HOW TO ADD A NEW POST:
+ * 1. Copy one of the existing blog/research objects including the enclosing curly braces {}.
+ * 2. Paste it where you want it to appear in the display order.
+ * 3. Update all of the properties with your new post information.
+ * 4. Set the category to either "blog" or "research" to determine which tab it appears in.
+ * 5. Make sure to add a comma after the closing brace if it's not the last post.
+ * 
+ * HOW TO REMOVE A POST:
+ * 1. Delete the entire blog object including the enclosing curly braces {}.
+ * 2. Make sure to remove any trailing comma or add a comma to the post before it if needed.
+ * 
+ * HOW TO EDIT A POST:
+ * 1. Simply find the blog object you want to edit and update its properties.
+ * 
+ * ORGANIZATION TIP:
+ * - Blog posts and Research papers are separated by comments in this file for easier management.
+ * - Keep this organization when adding new content.
  */
 export const blogs: Blog[] = [
   // Blog Posts
