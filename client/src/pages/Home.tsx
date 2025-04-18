@@ -18,7 +18,7 @@ const Home = () => {
             </h1>
             
             {/* Typewriter effect for different titles */}
-            <h3 className="text-2xl md:text-3xl font-medium text-gray-300 mb-8 h-16">
+            <h3 className="text-2xl md:text-3xl font-medium text-gray-300 mb-4 h-16">
               <Typewriter
                 options={{
                   strings: [
@@ -34,6 +34,16 @@ const Home = () => {
                 }}
               />
             </h3>
+            
+            {/* Sanskrit Quote */}
+            <div className="mb-8 p-4 border-l-4 border-primary bg-card/40 rounded">
+              <p className="text-lg font-light italic text-gray-300 mb-1">
+                "विद्या ददाति विनयं विनयाद्याति पात्रताम्"
+              </p>
+              <p className="text-sm text-gray-400">
+                Knowledge gives humility, from humility comes worthiness.
+              </p>
+            </div>
 
             <div className="mt-8">
               <p className="text-xl mb-6">

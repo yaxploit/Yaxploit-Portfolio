@@ -67,12 +67,16 @@ const Navbar = () => {
     if (mainContent && footer) {
       if (!isStarViewActive) {
         // If activating star view, hide content
-        mainContent.style.visibility = 'hidden';
-        footer.style.visibility = 'hidden';
+        mainContent.style.opacity = '0';
+        mainContent.style.pointerEvents = 'none';
+        footer.style.opacity = '0';
+        document.body.style.background = 'black'; // Set pure black background
       } else {
         // If deactivating star view, show content
-        mainContent.style.visibility = 'visible';
-        footer.style.visibility = 'visible';
+        mainContent.style.opacity = '1';
+        mainContent.style.pointerEvents = 'auto';
+        footer.style.opacity = '1';
+        document.body.style.backgroundImage = 'radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0)'; // Restore gradient background
       }
     }
   };
@@ -81,8 +85,8 @@ const Navbar = () => {
     <>
       {/* Star View Overlay - only visible when star view is active */}
       {isStarViewActive && (
-        <div className="fixed inset-0 bg-black z-40 flex items-center justify-center">
-          <div className="text-white text-center p-4 absolute top-24">
+        <div className="fixed inset-0 z-40 flex items-center justify-center pointer-events-none">
+          <div className="text-white text-center p-4 absolute top-24 bg-black/30 backdrop-blur-sm rounded-lg">
             <p className="text-lg">Star View Mode</p>
             <p className="text-sm text-gray-400 mt-2">Press the star icon again to exit</p>
           </div>

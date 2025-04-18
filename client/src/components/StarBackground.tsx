@@ -16,8 +16,8 @@ const StarBackground = () => {
     if (!containerRef.current) return;
     
     const container = containerRef.current;
-    const starCount = 400; // Doubled star count for much higher density
-    const shootingStarCount = 10; // More shooting stars in queue
+    const starCount = 900; // Increased star count to 900 for much higher density
+    const shootingStarCount = 15; // More shooting stars in queue
     
     // Clear existing stars
     container.innerHTML = '';
