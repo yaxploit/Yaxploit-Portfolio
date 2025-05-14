@@ -2,9 +2,14 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "ESNext",
+    "target": "ESNext",
     "outDir": "dist/server",
-    "noEmit": false
+    "moduleResolution": "bundler",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["server/**/*"],
   "exclude": ["client", "node_modules"]
-} 
+}
