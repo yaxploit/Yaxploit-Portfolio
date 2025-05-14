@@ -6,65 +6,56 @@
  * 
  * The component can display icons only or icons with text labels.
  */
-import { Github, Linkedin } from "lucide-react";
-import { SiHackerone, SiBugcrowd, SiTryhackme } from "react-icons/si";
+import { motion } from 'framer-motion';
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from 'react-icons/fa';
 
-interface SocialLinksProps {
-  className?: string;
-  showText?: boolean;
-}
+const socialLinks = [
+  {
+    icon: <FaGithub className="w-5 h-5" />,
+    href: 'https://github.com/Yaxploit',
+    label: 'GitHub'
+  },
+  {
+    icon: <FaLinkedin className="w-5 h-5" />,
+    href: 'https://linkedin.com/in/Yash-5gaikwad',
+    label: 'LinkedIn'
+  },
+  {
+    icon: <FaTwitter className="w-5 h-5" />,
+    href: 'https://twitter.com/Yaxploit',
+    label: 'Twitter'
+  },
+  {
+    icon: <FaEnvelope className="w-5 h-5" />,
+    href: 'mailto:Yaxploit@tutamail.com',
+    label: 'Email'
+  }
+];
 
-const SocialLinks = ({ className = "", showText = false }: SocialLinksProps) => {
-  // Array of social media and platform links
-  // To add a new platform:
-  // 1. Add a new object to this array
-  // 2. Include name, URL, and icon
-  const socialLinks = [
-    {
-      name: "GitHub",
-      url: "https://github.com/yaxploit",
-      icon: <Github />,
-    },
-    {
-      name: "LinkedIn",
-      url: "https://linkedin.com/in/yashgaikwad",
-      icon: <Linkedin />,
-    },
-    {
-      name: "HackerOne",
-      url: "https://hackerone.com/yaxploit",
-      icon: <SiHackerone size={20} />,
-    },
-    {
-      name: "BugCrowd",
-      url: "https://bugcrowd.com/yaxploit",
-      icon: <SiBugcrowd size={20} />,
-    },
-    {
-      name: "TryHackMe",
-      url: "https://tryhackme.com/p/yaxploit",
-      icon: <SiTryhackme size={20} />,
-    },
-  ];
-
+const SocialLinks = () => {
   return (
-    <div className={className}>
-      <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-        {socialLinks.map((link) => (
-          <a
-            key={link.name}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-all duration-300"
-            aria-label={link.name}
-          >
-            {link.icon}
-            {showText && <span className="ml-2">{link.name}</span>}
-          </a>
-        ))}
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="fixed right-8 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-4"
+    >
+      {socialLinks.map((link, index) => (
+        <motion.a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: index * 0.1 }}
+          whileHover={{ scale: 1.1, x: -5 }}
+          className="p-3 rounded-full bg-background/50 border border-accent/20 hover:border-accent/40 text-accent hover:text-white transition-colors"
+          aria-label={link.label}
+        >
+          {link.icon}
+        </motion.a>
+      ))}
+    </motion.div>
   );
 };
 

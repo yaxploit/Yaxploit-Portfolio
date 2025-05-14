@@ -1,4 +1,4 @@
-import { BookOpen, FlaskConical, Newspaper } from "lucide-react";
+import { BookOpen, FlaskConical, Newspaper, Book } from "lucide-react";
 import BlogCard from "@/components/BlogCard";
 import { blogs } from "@/data/blogs";
 import { useState } from "react";
@@ -19,6 +19,7 @@ const Blogs = () => {
   // Filter blogs based on category
   const blogPosts = blogs.filter(blog => blog.category === "blog");
   const researchPapers = blogs.filter(blog => blog.category === "research");
+  const books = blogs.filter(blog => blog.category === "book");
   
   return (
     <div className="min-h-screen">
@@ -32,7 +33,7 @@ const Blogs = () => {
           </p>
 
           <Tabs defaultValue="blog" className="w-full mb-12" onValueChange={setActiveTab}>
-            <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 mb-8">
+            <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 mb-8">
               <TabsTrigger value="blog" className="flex items-center gap-2">
                 <BookOpen size={16} />
                 <span>Blog Posts</span>
@@ -40,6 +41,10 @@ const Blogs = () => {
               <TabsTrigger value="research" className="flex items-center gap-2">
                 <FlaskConical size={16} />
                 <span>Research Papers</span>
+              </TabsTrigger>
+              <TabsTrigger value="book" className="flex items-center gap-2">
+                <Book size={16} />
+                <span>Books</span>
               </TabsTrigger>
             </TabsList>
             
@@ -49,15 +54,29 @@ const Blogs = () => {
                   <BlogCard
                     key={blog.title}
                     title={blog.title}
-                    description={blog.description}
-                    image={blog.image}
-                    tags={blog.tags}
+                    excerpt={blog.description}
                     date={blog.date}
                     readTime={blog.readTime}
-                    url={blog.url}
-                    category={blog.category}
+                    slug={blog.url}
+                    imageUrl={blog.image}
+                    tags={blog.tags}
+                    category="blog"
                   />
                 ))}
+                <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <div>
+                      <h3 className="text-xl font-semibold">More Blogs</h3>
+                      <p className="text-primary text-sm">Comming Soon...</p>
+                      <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                        
+                      </div>
+                      <p className="mt-3 text-gray-400">
+                      Blogs and research publications are in the works — stay tuned for upcoming content as I document my journey and insights in cybersecurity.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </TabsContent>
             
@@ -67,22 +86,56 @@ const Blogs = () => {
                   <BlogCard
                     key={blog.title}
                     title={blog.title}
-                    description={blog.description}
-                    image={blog.image}
-                    tags={blog.tags}
+                    excerpt={blog.description}
                     date={blog.date}
                     readTime={blog.readTime}
-                    url={blog.url}
-                    category={blog.category}
+                    slug={blog.url}
+                    imageUrl={blog.image}
+                    tags={blog.tags}
+                    category="research"
                   />
                 ))}
+                <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <div>
+                      <h3 className="text-xl font-semibold">More Research Papers</h3>
+                      <p className="text-primary text-sm">Comming Soon...</p>
+                      <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                        
+                      </div>
+                      <p className="mt-3 text-gray-400">
+                      Blogs and research publications are in the works — stay tuned for upcoming content as I document my journey and insights in cybersecurity.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="book">
+              <div className="flex justify-center items-center py-8">
+                {books.length > 0 && (
+                  <div className="w-full max-w-2xl">
+                    <BlogCard
+                      key={books[0].title}
+                      title={books[0].title}
+                      excerpt={books[0].description}
+                      date={books[0].date}
+                      readTime={books[0].readTime}
+                      slug={books[0].url}
+                      imageUrl={books[0].image}
+                      tags={books[0].tags}
+                      category="book"
+                    />
+                  </div>
+                )}
               </div>
             </TabsContent>
           </Tabs>
 
           <div className="text-center mt-12">
             <a
-              href="https://blog.yaxploit.com"
+              href="https://dev.to/yaxploit"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 bg-primary hover:bg-secondary text-white px-6 py-3 rounded-md transition-all duration-300"

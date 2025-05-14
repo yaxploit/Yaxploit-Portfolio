@@ -15,6 +15,7 @@ export interface Project {
   image: string;        // URL to the project image (required)
   githubUrl: string;    // Link to the GitHub repository (required)
   demoUrl: string;      // Link to a live demo (required)
+  technologies: string[]; // Array of technologies used in the project (required)
 }
 
 /**
@@ -38,19 +39,25 @@ export interface Project {
  */
 export const projects: Project[] = [
   {
-    title: "VulnScanner Pro",
+    title: "Inspector",
     description: "An advanced web application vulnerability scanner built with Python and React. Features automated OWASP Top 10 detection, customizable scanning profiles, and detailed remediation guidance for security teams.",
-    image: "https://img.freepik.com/free-vector/programming-code-icon-made-with-binary-code-coding-hacker-matrix-background-with-digits-1-0_127544-1141.jpg",
-    githubUrl: "https://github.com/yaxploit/vulnscanner-pro",
-    demoUrl: "https://vulnscanner.yaxploit.com",
+    image: "/src/assets/inspector.jpg",
+    githubUrl: "https://github.com/yaxploit/Inspector",
+    demoUrl: "https://inspector-mu6h.onrender.com/",
+    technologies: ["Python", "React", "OWASP", "Security"]
   },
   {
-    title: "SecureAuth Framework",
-    description: "A comprehensive authentication security framework that implements multi-factor authentication, JWT token security, and protection against common authentication vulnerabilities like session hijacking and CSRF.",
-    image: "https://img.freepik.com/free-vector/cyber-lock-security-concept-padlock-protection-access-with-privacy-data-illustration_175838-749.jpg",
-    githubUrl: "https://github.com/yaxploit/secureauth-framework",
-    demoUrl: "https://secureauth.yaxploit.com",
+    title: "Mal_Scanner",
+    description: "A Python-based signature malware scanner with a Tkinter GUI. It scans files using hash and pattern matching, detects known threats, and displays results in a simple, user-friendly interface. Supports custom signature databases and real-time scanning for lightweight threat detection.",
+    image: "/src/assets/Mal_scanner.jpg",
+    githubUrl: "https://github.com/yaxploit/Mal_scanner",
+    demoUrl: "https://github.com/yaxploit/Mal_scanner",
+    technologies: ["Python", "Tkinter", "Malware Analysis", "Security"]
   },
+
+
+  /*
+
   {
     title: "NetworkMapperX",
     description: "An advanced network mapping and reconnaissance tool with stealth capabilities. Features port scanning, service detection, and vulnerability correlation in an intuitive dashboard interface.",
@@ -58,6 +65,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/yaxploit/networkmapperx",
     demoUrl: "https://networkmap.yaxploit.com",
   },
+
   {
     title: "WebSecFuzzer",
     description: "A specialized fuzzing tool for web applications that identifies security vulnerabilities through intelligent input mutation and response analysis. Helps discover XSS, SQLi, and business logic flaws.",
@@ -99,5 +107,8 @@ export const projects: Project[] = [
     image: "https://img.freepik.com/free-vector/internet-things-concept-illustration_114360-2123.jpg",
     githubUrl: "https://github.com/yaxploit/iot-security-scanner",
     demoUrl: "https://iot-scanner.yaxploit.com",
-  },
+  }, */
+  
+
 ];
+

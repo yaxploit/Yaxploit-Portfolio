@@ -1,11 +1,19 @@
+// Core dependencies
 import { Switch, Route } from "wouter";
-import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
+
+// State management
+import { queryClient } from "./lib/queryClient";
+
+// Layout components
 import Layout from "@/components/Layout";
-import Preloader from "@/components/Preloader";
+import { Toaster } from "@/components/ui/toaster";
+import TerminalStylePreloader from "@/components/ui/TerminalStylePreloader";
+import { ScrollToTop } from "@/components/ScrollToTop";
+
+// Page components
 import Home from "@/pages/Home";
-import About from "@/pages/About";
+import Experience from "@/pages/Experience";
 import Projects from "@/pages/Projects";
 import Resume from "@/pages/Resume";
 import Blogs from "@/pages/Blogs";
@@ -13,17 +21,25 @@ import Contact from "@/pages/Contact";
 import NotFound from "@/pages/not-found";
 
 /**
- * Router Component
+ * Application Routes Configuration
  * 
- * Defines all the main routes for the application.
- * Each route maps a URL path to a specific page component.
- * The last route (without a path) catches any undefined routes and shows the NotFound page.
+ * Centralizes all route definitions for the application.
+ * Routes are matched in order, with the NotFound route catching any unmatched paths.
+ * 
+ * Route Structure:
+ * - "/" -> Home page
+ * - "/experience" -> Professional experience
+ * - "/projects" -> Portfolio projects
+ * - "/resume" -> Resume/CV
+ * - "/blogs" -> Blog posts
+ * - "/contact" -> Contact form
+ * - "*" -> NotFound (404) page
  */
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/about" component={About} />
+      <Route path="/experience" component={Experience} />
       <Route path="/projects" component={Projects} />
       <Route path="/resume" component={Resume} />
       <Route path="/blogs" component={Blogs} />
@@ -34,24 +50,28 @@ function Router() {
 }
 
 /**
- * Main App Component
+ * Root Application Component
  * 
- * This is the top-level component that:
- * 1. Sets up the QueryClientProvider for data fetching
- * 2. Includes the Preloader for initial loading animation
- * 3. Wraps all content in the Layout component (which contains Navbar, Footer, etc.)
- * 4. Adds the Router for page navigation
- * 5. Includes the Toaster for showing notifications
+ * Provides the core application structure and configuration:
+ * 1. Global state management via QueryClientProvider
+ * 2. Automatic scroll restoration with ScrollToTop
+ * 3. Initial loading animation via TerminalStylePreloader
+ * 4. Consistent layout wrapping via Layout component
+ * 5. Global notification system via Toaster
  * 
- * To add a new page:
- * 1. Create a new component in the pages folder
- * 2. Import it at the top of this file
- * 3. Add a new Route in the Router component above
+ * Component Hierarchy:
+ * - QueryClientProvider (Global state)
+ *   ├─ ScrollToTop (Navigation behavior)
+ *   ├─ TerminalStylePreloader (Loading UI)
+ *   ├─ Layout (Page structure)
+ *   │  └─ Router (Page routing)
+ *   └─ Toaster (Notifications)
  */
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Preloader />
+      <ScrollToTop />
+      <TerminalStylePreloader />
       <Layout>
         <Router />
       </Layout>

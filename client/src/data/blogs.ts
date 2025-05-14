@@ -19,7 +19,7 @@ export interface Blog {
   date: string;        // Publication date (required, format: "Month Day, Year")
   readTime: string;    // Estimated reading time (required, format: "X min read")
   url: string;         // URL to the full article (required)
-  category: "blog" | "research"; // Type of content - "blog" or "research" (required)
+  category: "blog" | "research" | "book"; // Type of content - "blog", "research", or "book" (required)
 }
 
 /**
@@ -32,7 +32,7 @@ export interface Blog {
  * 1. Copy one of the existing blog/research objects including the enclosing curly braces {}.
  * 2. Paste it where you want it to appear in the display order.
  * 3. Update all of the properties with your new post information.
- * 4. Set the category to either "blog" or "research" to determine which tab it appears in.
+ * 4. Set the category to either "blog", "research", or "book" to determine which tab it appears in.
  * 5. Make sure to add a comma after the closing brace if it's not the last post.
  * 
  * HOW TO REMOVE A POST:
@@ -55,7 +55,7 @@ export const blogs: Blog[] = [
     tags: ["Web Security", "XSS", "OWASP"],
     date: "March 5, 2025",
     readTime: "8 min read",
-    url: "https://blog.yaxploit.com/understanding-xss-attacks",
+    url: "https://dev.to/yaxploit/understanding-xss-attacks",
     category: "blog"
   },
   {
@@ -65,7 +65,7 @@ export const blogs: Blog[] = [
     tags: ["SQL Injection", "Database Security", "Web Exploitation"],
     date: "February 18, 2025",
     readTime: "12 min read",
-    url: "https://blog.yaxploit.com/sql-injection-exploitation",
+    url: "https://dev.to/yaxploit/sql-injection-exploitation",
     category: "blog"
   },
   {
@@ -75,9 +75,10 @@ export const blogs: Blog[] = [
     tags: ["Secure Coding", "Code Review", "DevSecOps"],
     date: "January 25, 2025",
     readTime: "10 min read",
-    url: "https://blog.yaxploit.com/secure-code-review",
+    url: "https://dev.to/yaxploit/secure-code-review",
     category: "blog"
   },
+  /*
   {
     title: "Building Effective Security Headers for Web Applications",
     description: "How to implement and configure HTTP security headers to protect against common web vulnerabilities and attacks.",
@@ -98,18 +99,19 @@ export const blogs: Blog[] = [
     url: "https://blog.yaxploit.com/bug-bounty-hunting",
     category: "blog"
   },
-  
+  */
   // Research Papers
   {
-    title: "Analysis of Zero-Day Vulnerabilities in IoT Devices",
-    description: "An in-depth research paper examining recent zero-day vulnerabilities discovered in popular IoT devices and their implications.",
-    image: "https://img.freepik.com/free-vector/internet-things-concept-illustration_114360-2123.jpg",
+    title: "Analysis of Zero-Day Vulnerabilities in Web applications",
+    description: "An in-depth research paper examining recent zero-day vulnerabilities discovered in popular web applications and their implications.",
+    image: "https://img.freepik.com/free-vector/cyber-security-concept-with-people_23-2148530843.jpg",
     tags: ["IoT Security", "Zero-Day", "Research"],
     date: "March 1, 2025",
     readTime: "20 min read",
-    url: "https://research.yaxploit.com/iot-zeroday-analysis",
+    url: "https://dev.to/yaxploit/iot-zeroday-analysis",
     category: "research"
   },
+  /*
   {
     title: "Forensic Analysis of Advanced Persistent Threats",
     description: "A comprehensive methodology for detecting and analyzing APT activities with case studies from recent high-profile breaches.",
@@ -139,5 +141,16 @@ export const blogs: Blog[] = [
     readTime: "30 min read",
     url: "https://research.yaxploit.com/kernel-vulnerability-research",
     category: "research"
-  }
+  }             */
+  // Books
+  {
+    title: "Yaxploit's Offensive Cybersecurity Playbook",
+    description: "A curated personal handbook crafted by Yash Gaikwad (a.k.a Yaxploit), compiling years of offensive cybersecurity knowledge, practical exploitation checklists, hunting playbooks, CTF methodologies, and personal strategies. This playbook bridges the gap between raw hacker instinct and structured offensive security practices, serving as a trusted companion for bug hunters, penetration testers, and red teamers.",
+    image: "https://img.freepik.com/free-vector/flat-design-book-illustration_23-2149324526.jpg",
+    tags: ["Cybersecurity", "Book", "Guide"],
+    date: " 2028",
+    readTime: "Pages Not Decided Yet",
+    url: "https://dev.to/yaxploit/Yaxploit's Offensive Cybersecurity Playbook",
+    category: "book"
+  },
 ];

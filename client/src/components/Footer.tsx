@@ -5,22 +5,47 @@
  * The copyright year is dynamically generated based on the current date.
  */
 
-import { Link } from "wouter";
+import { motion } from 'framer-motion';
+import { Link } from 'wouter';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-card border-t border-gray-800 py-8">
+    <motion.footer
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      className="py-8 border-t border-accent/20"
+    >
       <div className="container mx-auto px-4">
-        <div className="flex justify-center items-center">
-          <div className="text-center">
-            <p>Designed and Developed by Yaxploit</p>
-            <p className="text-gray-500 text-sm">Copyright © {currentYear} Yaxploit</p>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-gray-400 text-sm">
+            © {currentYear} Yash Gaikwad. All rights reserved.
           </div>
+          
+          <nav className="flex gap-6">
+            <Link
+              href="/privacy"
+              className="text-gray-400 hover:text-accent text-sm transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms"
+              className="text-gray-400 hover:text-accent text-sm transition-colors"
+            >
+              Terms of Service
+            </Link>
+            <Link
+              href="/contact"
+              className="text-gray-400 hover:text-accent text-sm transition-colors"
+            >
+              Contact
+            </Link>
+          </nav>
         </div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

@@ -41,10 +41,7 @@ export const skills: Skill[] = [
     name: "PowerShell",
     icon: "SiPowershell",
   },
-  {
-    name: "Ruby",
-    icon: "SiRuby",
-  },
+  
   
   // Operating Systems
   {
@@ -52,31 +49,29 @@ export const skills: Skill[] = [
     icon: "SiLinux",
   },
   {
+    name: "kaliLinux",
+    icon: "SiKalilinux",
+  },
+  {
     name: "Windows",
     icon: "SiWindows",
   },
   
   // Security Domains
-  {
-    name: "Web Security",
-    icon: "SiWebmoney",
-  },
+  
   {
     name: "Network Security",
     icon: "SiWireshark",
   },
   {
     name: "Cloud Security",
-    icon: "SiAmazonaws",
+    icon: "SiCloudflare",
   },
   {
     name: "Mobile Security",
     icon: "SiAndroid",
   },
-  {
-    name: "IoT Security",
-    icon: "SiHomeassistant",
-  },
+  
   
   // Frameworks & Standards
   {
@@ -99,7 +94,7 @@ export const skills: Skill[] = [
   },
   {
     name: "Metasploit",
-    icon: "SiRapidapi",
+    icon: "SiMetasploit",
   },
   
   // Attack Techniques
@@ -117,10 +112,7 @@ export const skills: Skill[] = [
   },
   
   // Security Environments
-  {
-    name: "Kali Linux",
-    icon: "SiKalilinux",
-  },
+ 
   {
     name: "Penetration Testing",
     icon: "SiHackaday",

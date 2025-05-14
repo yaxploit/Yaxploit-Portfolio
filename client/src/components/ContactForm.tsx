@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Mail, Loader2 } from "lucide-react";
+import { motion } from 'framer-motion';
 
 const contactFormSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -22,6 +23,8 @@ type ContactFormValues = z.infer<typeof contactFormSchema>;
 const ContactForm = () => {
   const { toast } = useToast();
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
   const {
     register,
@@ -60,8 +63,18 @@ const ContactForm = () => {
     },
   });
 
-  const onSubmit = (data: ContactFormValues) => {
-    mutate(data);
+  const onSubmit = async (data: ContactFormValues) => {
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      mutate(data);
+      setSubmitStatus('success');
+    } catch (error) {
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -70,14 +83,14 @@ const ContactForm = () => {
       <div>
         <div className="relative overflow-hidden rounded-lg shadow-2xl group">
           <img
-            src="https://img.freepik.com/free-vector/organic-flat-customer-support-illustration_23-2148899173.jpg?w=740"
+            src="src\assets\contact_me.jpg"
             alt="Contact illustration"
             className="rounded-lg shadow-2xl transition-all duration-500 group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
             <div className="p-4 text-white">
               <p className="font-bold text-lg">Get in Touch</p>
-              <p className="text-sm text-gray-300">I'm available for security consultations</p>
+              <p className="text-sm text-gray-300">I'm available for any Cybersecurity Queries</p>
             </div>
           </div>
         </div>
@@ -85,7 +98,12 @@ const ContactForm = () => {
 
       {/* Contact Form - Right Side */}
       <div>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+        <motion.form
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-6"
+        >
           {/* Name Input */}
           <div>
             <Label htmlFor="name">Name</Label>
@@ -133,10 +151,11 @@ const ContactForm = () => {
           {/* Submit Button */}
           <Button
             type="submit"
-            className="w-full bg-primary hover:bg-secondary transition-all duration-300"
-            disabled={isPending}
+            disabled={isSubmitting}
+            className="w-full flex items-center justify-center gap-2 text-base font-semibold py-3 rounded-md bg-primary hover:bg-secondary transition-all duration-300"
+            asChild={false}
           >
-            {isPending ? (
+            {isSubmitting ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Sending...
               </>
@@ -161,7 +180,27 @@ const ContactForm = () => {
               </>
             )}
           </Button>
-        </form>
+
+          {submitStatus === 'success' && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-green-500 text-center"
+            >
+              Message sent successfully!
+            </motion.p>
+          )}
+
+          {submitStatus === 'error' && (
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-red-500 text-center"
+            >
+              Failed to send message. Please try again.
+            </motion.p>
+          )}
+        </motion.form>
 
         {/* Quick Contact Info */}
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -171,7 +210,7 @@ const ContactForm = () => {
             </div>
             <div>
               <h4 className="text-lg font-medium">Location</h4>
-              <p className="text-gray-400">Mumbai, India</p>
+              <p className="text-gray-400">Maharashtra, India</p>
             </div>
           </div>
 
@@ -181,7 +220,7 @@ const ContactForm = () => {
             </div>
             <div>
               <h4 className="text-lg font-medium">Email</h4>
-              <p className="text-gray-400">contact@yaxploit.com</p>
+              <p className="text-gray-400">yaxploit@gmail.com</p>
             </div>
           </div>
         </div>

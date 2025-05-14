@@ -22,8 +22,10 @@ const SkillCard = ({ name, icon }: SkillCardProps) => {
   };
 
   return (
-    <div className="border border-primary rounded-lg p-6 flex items-center justify-center hover:bg-primary/10 transition-all duration-300">
-      {renderIcon()}
+    <div className="card-hover-effect glow-border border border-primary rounded-lg p-6 flex items-center justify-center group">
+      <div className="transform group-hover:scale-110 transition-transform duration-300">
+        {renderIcon()}
+      </div>
       <span className="sr-only">{name}</span>
     </div>
   );

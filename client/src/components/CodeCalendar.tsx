@@ -48,7 +48,7 @@ const CodeCalendar = () => {
       </div>
       
       <div className="flex justify-between mt-4 text-sm text-gray-400">
-        <div>415 contributions in the last year</div>
+        <div>415 Activities in the last year</div>
         <div className="flex items-center gap-1">
           <span>Less</span>
           <div className="flex">

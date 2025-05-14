@@ -44,7 +44,7 @@ export const tools: Tool[] = [
   // Exploitation Frameworks
   {
     name: "Metasploit",
-    icon: "SiRapidapi",
+    icon: "SiMetasploit",
   },
   {
     name: "Cobalt Strike",
@@ -66,7 +66,7 @@ export const tools: Tool[] = [
   },
   {
     name: "SQLmap",
-    icon: "SiSqlite",
+    icon: "Sisql",
   },
   
   // Network Tools
@@ -80,25 +80,25 @@ export const tools: Tool[] = [
   },
   {
     name: "Netcat",
-    icon: "SiNintendonetwork",
+    icon: "SiNetcat",
   },
   {
     name: "Aircrack-ng",
-    icon: "SiWifi",
+    icon: "SiWifi-H",
   },
   
   // Password & Crypto Tools
   {
     name: "John the Ripper",
-    icon: "SiOpenssl",
+    icon: "SiRedhat",
   },
   {
     name: "Hashcat",
-    icon: "SiHackaday",
+    icon: "SiHashcat",
   },
   {
     name: "Hydra",
-    icon: "SiProxmox",
+    icon: "Sihydra",
   },
   
   // Vulnerability Scanners
@@ -114,22 +114,13 @@ export const tools: Tool[] = [
   // Reverse Engineering Tools
   {
     name: "Ghidra",
-    icon: "SiReverbnation",
+    icon: "SiGhidra",
   },
-  {
-    name: "IDA Pro",
-    icon: "SiRedhat",
-  },
-  {
-    name: "Radare2",
-    icon: "SiReact",
-  },
+ 
+  
   
   // Post-Exploitation
-  {
-    name: "Mimikatz",
-    icon: "SiMicrosoftazure",
-  },
+  
   {
     name: "Empire",
     icon: "SiEmpire",
@@ -140,8 +131,5 @@ export const tools: Tool[] = [
     name: "MobSF",
     icon: "SiAndroid",
   },
-  {
-    name: "Frida",
-    icon: "SiIos",
-  },
+  
 ];

@@ -2,173 +2,214 @@
  * StarBackground Component
  * 
  * This component creates a dynamic night sky background with:
- * - Random twinkling stars
- * - Occasional shooting stars that appear randomly
- * 
- * The animation is subtle, resembling a natural night sky.
+ * - Steady blinking stars
+ * - Random shooting stars with tails
  */
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useCallback } from "react";
+import { motion } from 'framer-motion';
 
 const StarBackground = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  useEffect(() => {
-    if (!containerRef.current) return;
-    
-    const container = containerRef.current;
-    const starCount = 900; // Increased star count to 900 for much higher density
-    const shootingStarCount = 15; // More shooting stars in queue
-    
-    // Clear existing stars
-    container.innerHTML = '';
-    
-    // Create regular twinkling stars
-    for (let i = 0; i < starCount; i++) {
-      const star = document.createElement('div');
-      star.className = 'star';
-      
-      // Randomize star size and brightness
-      const size = Math.random() * 2.5 + 0.5; // 0.5px to 3px
-      const brightness = Math.random() * 0.3 + 0.2; // 0.2 to 0.5 opacity
-      
-      // Apply styles
-      Object.assign(star.style, {
-        position: 'absolute',
-        width: `${size}px`,
-        height: `${size}px`,
-        backgroundColor: 'white',
-        borderRadius: '50%',
-        opacity: `${brightness}`,
-        left: `${Math.random() * 100}%`,
-        top: `${Math.random() * 100}%`,
-        animation: `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite`,
-        animationDelay: `${Math.random() * 5}s`,
-        boxShadow: size > 2 ? '0 0 2px 1px rgba(255, 255, 255, 0.3)' : 'none', // Glow for larger stars
-      });
-      
-      container.appendChild(star);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const animationFrameRef = useRef<number>();
+  const starsRef = useRef<Star[]>([]);
+  const shootingStarsRef = useRef<ShootingStar[]>([]);
+  const lastShootingStarTime = useRef<number>(0);
+
+  class Star {
+    x: number = 0;
+    y: number = 0;
+    size: number = 0;
+    opacity: number = 0;
+    blinkSpeed: number = 0;
+    brightness: number = 0;
+
+    constructor(canvas: HTMLCanvasElement) {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 2 + 0.5;
+      this.opacity = Math.random() * 0.5 + 0.5;
+      this.blinkSpeed = Math.random() * 0.03 + 0.02; // Increased blink speed
+      this.brightness = Math.random() * 0.5 + 0.5;
     }
-    
-    // Create shooting stars that appear at random intervals
-    const createShootingStar = () => {
-      const shootingStar = document.createElement('div');
-      
-      // Random position on screen - can start from different parts (not just top)
-      const randomPosition = Math.random();
-      const startingX = Math.random() * 70 + 15; // 15-85% of screen width
-      const startingY = randomPosition < 0.6 ? Math.random() * 30 : 0; // 60% chance to start from top 30% of screen
-      
-      // Random travel distance - not always full screen
-      const travelDistance = Math.random() * 50 + 20; // 20-70% of screen height
-      const endY = Math.min(100, startingY + travelDistance);
-      
-      // Random angle for diagonal movement
-      const angle = Math.random() * 35 + 10; // 10-45 degrees 
-      
-      // Direction of travel (left or right)
-      const direction = Math.random() > 0.5 ? 1 : -1;
-      
-      // Calculate end position based on angle and direction
-      const endX = startingX + (angle / 2) * direction;
-      
-      // Random tail length - increased for more visible tails
-      const tailLength = Math.random() * 35 + 20; // 20-55px
-      
-      // Random brightness 
-      const brightness = Math.random() * 0.4 + 0.6; // 0.6-1.0
-      
-      // Style the shooting star
-      Object.assign(shootingStar.style, {
-        position: 'absolute',
-        width: '2px',
-        height: '2px',
-        backgroundColor: 'white',
-        boxShadow: `0 0 3px 1px rgba(255, 255, 255, ${brightness * 0.6})`,
-        borderRadius: '50%',
-        left: `${startingX}%`,
-        top: `${startingY}%`,
-        opacity: '0',
-        transform: direction > 0 ? 'rotate(45deg)' : 'rotate(135deg)', // Adjust angle based on direction
-        zIndex: '1',
-      });
-      
-      // Append to container
-      container.appendChild(shootingStar);
-      
-      // Random duration for animation
-      const duration = 700 + Math.random() * 1300; // 0.7-2 seconds
-      
-      // Add animation with keyframes for shooting star effect
-      shootingStar.animate([
-        { // Start state
-          opacity: 0,
-          left: `${startingX}%`,
-          top: `${startingY}%`,
-          boxShadow: `0 0 3px 1px rgba(255, 255, 255, ${brightness * 0.2})`,
-        },
-        { // Mid state (visible, trailing)
-          opacity: brightness,
-          left: `${(startingX + endX) / 2}%`,
-          top: `${(startingY + endY) / 2}%`,
-          boxShadow: `0 0 5px 2px rgba(255, 255, 255, ${brightness * 0.7}), 
-                     0 0 ${tailLength}px ${tailLength/2}px rgba(255, 255, 255, ${brightness * 0.5})`,
-        },
-        { // End state
-          opacity: 0,
-          left: `${endX}%`,
-          top: `${endY}%`,
-          boxShadow: `0 0 3px 1px rgba(255, 255, 255, ${brightness * 0.2})`,
-        }
-      ], {
-        duration: duration,
-        easing: 'ease-out',
-        fill: 'forwards'
-      });
-      
-      // Remove the shooting star after animation
-      setTimeout(() => {
-        if (container.contains(shootingStar)) {
-          container.removeChild(shootingStar);
-        }
-      }, duration + 100);
-    };
-    
-    // Create multiple shooting stars at once
-    const createMultipleShootingStars = (count: number) => {
-      for (let i = 0; i < count; i++) {
-        // Stagger the creation slightly for natural effect
-        setTimeout(() => {
-          createShootingStar();
-        }, Math.random() * 300); // Spread creation over 300ms
+
+    update() {
+      // Enhanced blinking effect
+      this.opacity += this.blinkSpeed;
+      if (this.opacity > 1) {
+        this.opacity = 1;
+        this.blinkSpeed = -this.blinkSpeed;
+      } else if (this.opacity < 0.2) { // Lowered minimum opacity for more noticeable blink
+        this.opacity = 0.2;
+        this.blinkSpeed = -this.blinkSpeed;
       }
-    };
-    
-    // Regularly create shooting stars at a much more frequent interval
-    const createShootingStarsRegularly = () => {
-      // Create initial shooting stars
-      createMultipleShootingStars(shootingStarCount);
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       
-      // Create 1-3 shooting stars every 1-2 seconds
-      setInterval(() => {
-        // Number of stars to create in this batch (1-3)
-        const starsToCreate = Math.floor(Math.random() * 3) + 1;
-        createMultipleShootingStars(starsToCreate);
-      }, 1000 + Math.random() * 1000); // 1-2 second interval
+      const gradient = ctx.createRadialGradient(
+        this.x, this.y, 0,
+        this.x, this.y, this.size * 2.5 // Increased glow radius
+      );
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity * this.brightness})`);
+      gradient.addColorStop(0.5, `rgba(255, 255, 255, ${this.opacity * this.brightness * 0.5})`); // Added middle gradient
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      
+      ctx.fillStyle = gradient;
+      ctx.fill();
+    }
+  }
+
+  class ShootingStar {
+    x: number = 0;
+    y: number = 0;
+    speed: number = 0;
+    length: number = 0;
+    opacity: number = 0;
+    angle: number = 0;
+
+    constructor(canvas: HTMLCanvasElement) {
+      // Start from random position on the top or right edge
+      if (Math.random() > 0.5) {
+        this.x = Math.random() * canvas.width;
+        this.y = 0;
+        this.angle = Math.PI / 4 + (Math.random() * Math.PI / 4); // 45-90 degrees
+      } else {
+        this.x = canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.angle = Math.PI * 3/4 + (Math.random() * Math.PI / 4); // 135-180 degrees
+      }
+      
+      this.speed = Math.random() * 15 + 10; // Faster speed for shooting stars
+      this.length = Math.random() * 20 + 10; // Tail length
+      this.opacity = 1;
+    }
+
+    update(canvas: HTMLCanvasElement) {
+      this.x += Math.cos(this.angle) * this.speed;
+      this.y += Math.sin(this.angle) * this.speed;
+      this.opacity -= 0.02; // Fade out
+
+      // Check if out of bounds
+      return this.x < 0 || this.x > canvas.width || 
+             this.y < 0 || this.y > canvas.height || 
+             this.opacity <= 0;
+    }
+
+    draw(ctx: CanvasRenderingContext2D) {
+      ctx.beginPath();
+      ctx.moveTo(this.x, this.y);
+      ctx.lineTo(
+        this.x - Math.cos(this.angle) * this.length,
+        this.y - Math.sin(this.angle) * this.length
+      );
+      
+      const gradient = ctx.createLinearGradient(
+        this.x, this.y,
+        this.x - Math.cos(this.angle) * this.length,
+        this.y - Math.sin(this.angle) * this.length
+      );
+      
+      gradient.addColorStop(0, `rgba(255, 255, 255, ${this.opacity})`);
+      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      
+      ctx.strokeStyle = gradient;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  const initCanvas = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    const resizeCanvas = () => {
+      if (!canvas) return;
+      const dpr = window.devicePixelRatio || 1;
+      const rect = canvas.getBoundingClientRect();
+      
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      
+      ctx.scale(dpr, dpr);
+      canvas.style.width = `${rect.width}px`;
+      canvas.style.height = `${rect.height}px`;
+
+      const starCount = Math.floor((rect.width * rect.height) / 1500);
+      starsRef.current = Array.from({ length: starCount }, () => new Star(canvas));
+      shootingStarsRef.current = [];
     };
-    
-    // Start the shooting star creation
-    createShootingStarsRegularly();
-    
-    // Cleanup function
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
     return () => {
-      container.innerHTML = '';
+      window.removeEventListener('resize', resizeCanvas);
     };
   }, []);
 
+  const animate = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+
+    // Clear with a slight fade effect
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Update and draw regular stars
+    starsRef.current.forEach(star => {
+      star.update();
+      star.draw(ctx);
+    });
+
+    // Add new shooting star randomly
+    const now = Date.now();
+    if (now - lastShootingStarTime.current > 1000 && Math.random() < 0.15) { // Increased to 15% chance every 1 second
+      shootingStarsRef.current.push(new ShootingStar(canvas));
+      lastShootingStarTime.current = now;
+    }
+
+    // Update and draw shooting stars
+    shootingStarsRef.current = shootingStarsRef.current.filter(star => {
+      const isOutOfBounds = star.update(canvas);
+      if (!isOutOfBounds) {
+        star.draw(ctx);
+      }
+      return !isOutOfBounds;
+    });
+    
+    animationFrameRef.current = requestAnimationFrame(animate);
+  }, []);
+
+  useEffect(() => {
+    const cleanup = initCanvas();
+    animate();
+
+    return () => {
+      cleanup?.();
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
+      }
+    };
+  }, [initCanvas, animate]);
+
   return (
-    <div 
-      ref={containerRef}
+    <motion.canvas
+      ref={canvasRef}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 2 }}
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
+      style={{
+        background: 'transparent'
+      }}
     />
   );
 };

@@ -23,9 +23,11 @@ const ToolCard = ({ name, icon, showName = false }: ToolCardProps) => {
   };
 
   return (
-    <div className="border border-primary rounded-lg p-6 flex items-center justify-center hover:bg-primary/10 transition-all duration-300">
-      {renderIcon()}
-      {showName && <span className="ml-2">{name}</span>}
+    <div className="card-hover-effect glow-border border border-primary rounded-lg p-6 flex items-center justify-center group">
+      <div className="transform group-hover:scale-110 transition-transform duration-300">
+        {renderIcon()}
+      </div>
+      {showName && <span className="ml-2 group-hover:text-primary transition-colors">{name}</span>}
     </div>
   );
 };

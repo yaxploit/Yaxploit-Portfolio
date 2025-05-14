@@ -1,4 +1,9 @@
-import { ArrowRight, BookOpen, FlaskConical } from "lucide-react";
+import { motion } from 'framer-motion';
+import { Link } from 'wouter';
+import { format } from 'date-fns';
+import { ExternalLink, BookOpen, FlaskConical, Book } from 'lucide-react';
+
+type ContentCategory = 'blog' | 'research' | 'book';
 
 /**
  * BlogCard Props Interface
@@ -6,16 +11,42 @@ import { ArrowRight, BookOpen, FlaskConical } from "lucide-react";
  * Defines the properties required for the BlogCard component.
  * These props match the Blog interface from data/blogs.ts
  */
-export interface BlogProps {
+export interface BlogCardProps {
   title: string;
-  description: string;
-  image: string;
-  tags: string[];
+  excerpt: string;
   date: string;
   readTime: string;
-  url: string;
-  category: "blog" | "research";
+  slug: string;
+  imageUrl?: string;
+  tags?: string[];
+  buttonLabel?: string;
+  category?: ContentCategory;
 }
+
+/**
+ * Get button configuration based on content category
+ */
+const getButtonConfig = (category: ContentCategory = 'blog') => {
+  const configs = {
+    blog: {
+      icon: <BookOpen size={18} />,
+      class: 'bg-primary hover:bg-primary-600 shadow-lg hover:shadow-primary/25',
+      label: 'Read Blog'
+    },
+    research: {
+      icon: <FlaskConical size={18} />,
+      class: 'bg-secondary hover:bg-secondary-600 shadow-lg hover:shadow-secondary/25',
+      label: 'View Research'
+    },
+    book: {
+      icon: <Book size={18} />,
+      class: 'bg-accent hover:bg-accent-600 shadow-lg hover:shadow-accent/25',
+      label: 'View Book'
+    }
+  } as const;
+  
+  return configs[category];
+};
 
 /**
  * BlogCard Component
@@ -29,92 +60,75 @@ export interface BlogProps {
  */
 const BlogCard = ({
   title,
-  description,
-  image,
-  tags,
+  excerpt,
   date,
   readTime,
-  url,
-  category,
-}: BlogProps) => {
+  slug,
+  imageUrl,
+  tags = [],
+  buttonLabel,
+  category = 'blog'
+}: BlogCardProps) => {
+  const buttonConfig = getButtonConfig(category);
+  const finalButtonLabel = buttonLabel || buttonConfig.label;
+
   return (
-    <div className="bg-card rounded-lg overflow-hidden border border-gray-800 hover:border-primary transition-all duration-300 flex flex-col h-full">
-      <div className="h-48 overflow-hidden group">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover object-center transition-all duration-300 group-hover:brightness-110 group-hover:scale-105"
-        />
-      </div>
-      <div className="p-6 flex-grow">
-        <div className="flex justify-between items-start mb-3">
-          <div className="flex gap-2 flex-wrap">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="card-hover-effect glow-border bg-background/50 rounded-lg border border-accent/20 overflow-hidden flex flex-col"
+    >
+      {imageUrl && (
+        <div className="relative h-48 overflow-hidden group">
+          <img
+            src={imageUrl}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        </div>
+      )}
+      <div className="p-6 flex flex-col flex-grow">
+        <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
+          <time dateTime={date}>
+            {format(new Date(date), 'MMM d, yyyy')}
+          </time>
+          <span>•</span>
+          <span>{readTime} read</span>
+        </div>
+        <Link href={`/blogs/${slug}`}>
+          <h3 className="text-xl font-semibold mb-2 hover:text-primary transition-colors">
+            {title}
+          </h3>
+        </Link>
+        <p className="text-gray-400 mb-4 line-clamp-3">{excerpt}</p>
+        {tags.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 bg-primary/20 text-primary rounded-full text-xs"
+                className="px-3 py-1 text-sm bg-accent/10 text-accent rounded-full hover:bg-accent/20 transition-colors"
               >
                 {tag}
               </span>
             ))}
           </div>
-          <span className="flex items-center gap-1 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs">
-            {category === "blog" ? (
-              <><BookOpen size={12} /> Blog</>
-            ) : (
-              <><FlaskConical size={12} /> Research</>
-            )}
-          </span>
-        </div>
-        <h3 className="text-xl font-bold mb-3">{title}</h3>
-        <p className="text-gray-400 mb-4">{description}</p>
-        <div className="flex items-center text-sm text-gray-500">
-          <span className="flex items-center gap-1 mr-4">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
-            <span>{date}</span>
-          </span>
-          <span className="flex items-center gap-1">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-              />
-            </svg>
-            <span>{readTime}</span>
-          </span>
+        )}
+        <div className="mt-auto pt-4 flex gap-2">
+          <a
+            href="https://dev.to/yaxploit"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`inline-flex items-center gap-2 ${buttonConfig.class} text-white px-6 py-3 rounded-md transition-all duration-300 text-sm font-medium transform hover:scale-105 flex-1 justify-center`}
+            aria-label={finalButtonLabel}
+          >
+            {buttonConfig.icon}
+            <span className="font-semibold">{finalButtonLabel}</span>
+          </a>
         </div>
       </div>
-      <div className="p-6 pt-0">
-        <a
-          href={url}
-          className="text-primary hover:text-secondary flex items-center gap-2 transition-all duration-300"
-        >
-          <span>Read More</span>
-          <ArrowRight size={16} />
-        </a>
-      </div>
-    </div>
+    </motion.div>
   );
 };
 
