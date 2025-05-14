@@ -97,11 +97,9 @@ const BlogCard = ({
           <span>•</span>
           <span>{readTime} read</span>
         </div>
-        <Link href={`/blogs/${slug}`}>
-          <h3 className="text-xl font-semibold mb-2 hover:text-primary transition-colors">
-            {title}
-          </h3>
-        </Link>
+        <h3 className="text-xl font-semibold mb-2 hover:text-primary transition-colors">
+          {title}
+        </h3>
         <p className="text-gray-400 mb-4 line-clamp-3">{excerpt}</p>
         {tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-4">
