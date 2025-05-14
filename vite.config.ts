@@ -14,7 +14,7 @@ export default defineConfig({
       "@shared": path.resolve(__dirname, "shared"),
     },
   },
-  root: path.resolve(__dirname, "client"),
+  root: "./client",
   server: {
     port: 3000,
     proxy: {
@@ -25,7 +25,11 @@ export default defineConfig({
     },
   },
   build: {
-    outDir: path.resolve(__dirname, "dist/public"),
+    outDir: "../dist/public",
     emptyOutDir: true,
+    rollupOptions: {
+      input: "./client/index.html"
+    },
+    chunkSizeWarningLimit: 2000
   },
 });
