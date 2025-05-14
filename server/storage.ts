@@ -21,7 +21,7 @@ export class MemStorage implements IStorage {
     const message: Message = { 
       ...insertMessage, 
       id,
-      createdAt: new Date().toISOString()
+      createdAt: new Date()  // ✔️ Fixed: Use Date object instead of ISO string
     };
     this.messages.set(id, message);
     return message;
