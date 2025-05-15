@@ -135,11 +135,15 @@ const StarBackground = () => {
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
       
+      ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform before scaling
       ctx.scale(dpr, dpr);
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
 
-      const starCount = Math.floor((rect.width * rect.height) / 1500);
+      // Increase star count on mobile
+      const isMobile = window.innerWidth < 768;
+      const baseDensity = isMobile ? 900 : 1500; // More stars on mobile
+      const starCount = Math.floor((rect.width * rect.height) / baseDensity);
       starsRef.current = Array.from({ length: starCount }, () => new Star(canvas));
       shootingStarsRef.current = [];
     };
@@ -171,7 +175,11 @@ const StarBackground = () => {
 
     // Add new shooting star randomly
     const now = Date.now();
-    if (now - lastShootingStarTime.current > 1000 && Math.random() < 0.15) { // Increased to 15% chance every 1 second
+    // On mobile, reduce shooting star frequency for smoother performance
+    const isMobile = window.innerWidth < 768;
+    const shootingStarChance = isMobile ? 0.08 : 0.15;
+    const shootingStarInterval = isMobile ? 1800 : 1000;
+    if (now - lastShootingStarTime.current > shootingStarInterval && Math.random() < shootingStarChance) {
       shootingStarsRef.current.push(new ShootingStar(canvas));
       lastShootingStarTime.current = now;
     }

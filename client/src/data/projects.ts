@@ -41,7 +41,7 @@ export const projects: Project[] = [
   {
     title: "Inspector",
     description: "An advanced web application vulnerability scanner built with Python and React. Features automated OWASP Top 10 detection, customizable scanning profiles, and detailed remediation guidance for security teams.",
-    image: "/src/assets/inspector.jpg",
+    image: "/assets/inspector.jpg",
     githubUrl: "https://github.com/yaxploit/Inspector",
     demoUrl: "https://inspector-mu6h.onrender.com/",
     technologies: ["Python", "React", "OWASP", "Security"]
@@ -49,7 +49,7 @@ export const projects: Project[] = [
   {
     title: "Mal_Scanner",
     description: "A Python-based signature malware scanner with a Tkinter GUI. It scans files using hash and pattern matching, detects known threats, and displays results in a simple, user-friendly interface. Supports custom signature databases and real-time scanning for lightweight threat detection.",
-    image: "/src/assets/Mal_scanner.jpg",
+    image: "/assets/Mal_scanner.jpg",
     githubUrl: "https://github.com/yaxploit/Mal_scanner",
     demoUrl: "https://github.com/yaxploit/Mal_scanner",
     technologies: ["Python", "Tkinter", "Malware Analysis", "Security"]
