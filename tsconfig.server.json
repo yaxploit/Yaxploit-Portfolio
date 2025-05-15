@@ -11,6 +11,7 @@
     "skipLibCheck": true,
     "strict": true,
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "types": ["node"]
   },

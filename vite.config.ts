@@ -29,6 +29,6 @@ export default defineConfig({
     rollupOptions: {
       input: "./client/index.html"
     },
-    chunkSizeWarningLimit: 2000
+    chunkSizeWarningLimit: 6000
   },
 });
