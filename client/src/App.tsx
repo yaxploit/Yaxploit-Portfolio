@@ -1,6 +1,7 @@
 // Core dependencies
 import { Switch, Route } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
+import React, { Suspense, lazy } from "react";
 
 // State management
 import { queryClient } from "./lib/queryClient";
@@ -11,14 +12,14 @@ import { Toaster } from "@/components/ui/toaster";
 import TerminalStylePreloader from "@/components/ui/TerminalStylePreloader";
 import { ScrollToTop } from "@/components/ScrollToTop";
 
-// Page components
-import Home from "@/pages/Home";
-import Experience from "@/pages/Experience";
-import Projects from "@/pages/Projects";
-import Resume from "@/pages/Resume";
-import Blogs from "@/pages/Blogs";
-import Contact from "@/pages/Contact";
-import NotFound from "@/pages/not-found";
+// Page components (Lazy loaded)
+const Home = lazy(() => import("@/pages/Home"));
+const Experience = lazy(() => import("@/pages/Experience"));
+const Projects = lazy(() => import("@/pages/Projects"));
+const Resume = lazy(() => import("@/pages/Resume"));
+const Blogs = lazy(() => import("@/pages/Blogs"));
+const Contact = lazy(() => import("@/pages/Contact"));
+const NotFound = lazy(() => import("@/pages/not-found"));
 
 /**
  * Application Routes Configuration
@@ -64,7 +65,7 @@ function Router() {
  *   ├─ ScrollToTop (Navigation behavior)
  *   ├─ TerminalStylePreloader (Loading UI)
  *   ├─ Layout (Page structure)
- *   │  └─ Router (Page routing)
+ *   │  └─ Router (Page routing wrapped in Suspense)
  *   └─ Toaster (Notifications)
  */
 function App() {
@@ -73,7 +74,9 @@ function App() {
       <ScrollToTop />
       <TerminalStylePreloader />
       <Layout>
-        <Router />
+        <Suspense fallback={<div className="flex justify-center items-center h-screen"><p>Loading page...</p></div>}>
+          <Router />
+        </Suspense>
       </Layout>
       <Toaster />
     </QueryClientProvider>
