@@ -1,4 +1,4 @@
-import { messages, type Message, type InsertMessage } from "@shared/schema";
+import { messages, type Message, type InsertMessage } from "../shared/schema.js";
 
 // Interface for storage operations
 export interface IStorage {
