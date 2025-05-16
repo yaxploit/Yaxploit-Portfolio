@@ -16,32 +16,34 @@ const StarBackground = () => {
   const lastShootingStarTime = useRef<number>(0);
 
   class Star {
+    baseX: number = 0;
+    baseY: number = 0;
     x: number = 0;
     y: number = 0;
     size: number = 0;
     opacity: number = 0;
     blinkSpeed: number = 0;
     brightness: number = 0;
+    phase: number = 0;
 
     constructor(canvas: HTMLCanvasElement) {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
+      this.baseX = Math.random() * canvas.width;
+      this.baseY = Math.random() * canvas.height;
+      this.x = this.baseX;
+      this.y = this.baseY;
       this.size = Math.random() * 2 + 0.5;
       this.opacity = Math.random() * 0.5 + 0.5;
-      this.blinkSpeed = Math.random() * 0.03 + 0.02; // Increased blink speed
+      this.blinkSpeed = Math.random() * 0.03 + 0.02;
       this.brightness = Math.random() * 0.5 + 0.5;
+      this.phase = Math.random() * Math.PI * 2;
     }
 
-    update() {
-      // Enhanced blinking effect
-      this.opacity += this.blinkSpeed;
-      if (this.opacity > 1) {
-        this.opacity = 1;
-        this.blinkSpeed = -this.blinkSpeed;
-      } else if (this.opacity < 0.2) { // Lowered minimum opacity for more noticeable blink
-        this.opacity = 0.2;
-        this.blinkSpeed = -this.blinkSpeed;
-      }
+    update(time: number) {
+      // Oscillation: opacity sine wave (twinkle in a wave pattern)
+      const speed = 1.2; // Controls how fast the wave moves
+      this.opacity = 0.5 + 0.5 * Math.sin(time * speed + this.phase);
+      // Clamp opacity for safety
+      this.opacity = Math.max(0.2, Math.min(1, this.opacity));
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -168,8 +170,9 @@ const StarBackground = () => {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     // Update and draw regular stars
+    const time = performance.now() / 1000;
     starsRef.current.forEach(star => {
-      star.update();
+      star.update(time);
       star.draw(ctx);
     });
 
