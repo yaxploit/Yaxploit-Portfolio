@@ -83,7 +83,7 @@ const ContactForm = () => {
       <div>
         <div className="relative overflow-hidden rounded-lg shadow-2xl group">
           <img
-            src="src\assets\contact_me.jpg"
+            src="/assets/contact_me.jpg"
             alt="Contact illustration"
             className="rounded-lg shadow-2xl transition-all duration-500 group-hover:scale-110"
           />
