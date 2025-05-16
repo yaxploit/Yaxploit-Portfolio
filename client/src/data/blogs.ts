@@ -58,6 +58,7 @@ export const blogs: Blog[] = [
     url: "https://dev.to/yaxploit/understanding-xss-attacks",
     category: "blog"
   },
+  /*
   {
     title: "SQL Injection: From Basic to Advanced Exploitation",
     description: "Learn how SQL injection attacks work, common vulnerability patterns, and implementing parameterized queries for protection.",
@@ -78,6 +79,7 @@ export const blogs: Blog[] = [
     url: "https://dev.to/yaxploit/secure-code-review",
     category: "blog"
   },
+  */
   /*
   {
     title: "Building Effective Security Headers for Web Applications",
@@ -101,6 +103,7 @@ export const blogs: Blog[] = [
   },
   */
   // Research Papers
+  /*
   {
     title: "Analysis of Zero-Day Vulnerabilities in Web applications",
     description: "An in-depth research paper examining recent zero-day vulnerabilities discovered in popular web applications and their implications.",
@@ -111,6 +114,7 @@ export const blogs: Blog[] = [
     url: "https://dev.to/yaxploit/iot-zeroday-analysis",
     category: "research"
   },
+  */
   /*
   {
     title: "Forensic Analysis of Advanced Persistent Threats",
@@ -143,6 +147,7 @@ export const blogs: Blog[] = [
     category: "research"
   }             */
   // Books
+  /*
   {
     title: "Yaxploit's Offensive Cybersecurity Playbook",
     description: "A curated personal handbook crafted by Yash Gaikwad (a.k.a Yaxploit), compiling years of offensive cybersecurity knowledge, practical exploitation checklists, hunting playbooks, CTF methodologies, and personal strategies. This playbook bridges the gap between raw hacker instinct and structured offensive security practices, serving as a trusted companion for bug hunters, penetration testers, and red teamers.",
@@ -153,4 +158,5 @@ export const blogs: Blog[] = [
     url: "https://dev.to/yaxploit/Yaxploit's Offensive Cybersecurity Playbook",
     category: "book"
   },
+  */
 ];

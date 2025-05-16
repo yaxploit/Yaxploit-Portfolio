@@ -46,7 +46,7 @@ const Navbar = () => {
     { path: "/", label: "Home", icon: <Home className="h-4 w-4" /> },
     { path: "/experience", label: "Experience", icon: <User className="h-4 w-4" /> },
     { path: "/projects", label: "Projects", icon: <CodeXml className="h-4 w-4" /> },
-    { path: "/blogs", label: "Blogs", icon: <Newspaper className="h-4 w-4" /> },
+    { path: "/blogs", label: "Publications", icon: <Newspaper className="h-4 w-4" /> },
     { path: "/resume", label: "Resume", icon: <FileText className="h-4 w-4" /> },
     { path: "/contact", label: "Contact", icon: <MessageSquare className="h-4 w-4" /> },
   ];

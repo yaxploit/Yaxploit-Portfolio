@@ -98,7 +98,7 @@ const Blogs = () => {
                 <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
                   <div className="flex items-start gap-4">
                     <div>
-                      <h3 className="text-xl font-semibold">More Research Papers</h3>
+                      <h3 className="text-xl font-semibold">Research Papers</h3>
                       <p className="text-primary text-sm">Comming Soon...</p>
                       <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
                         
@@ -130,6 +130,20 @@ const Blogs = () => {
                   </div>
                 )}
               </div>
+              <div className="bg-card p-6 rounded-lg border border-primary/20 hover:border-primary/50 transition-all duration-300">
+                  <div className="flex items-start gap-4">
+                    <div>
+                      <h3 className="text-xl font-semibold">Yaxploit's Offensive Cybersecurity Playbook</h3>
+                      <p className="text-primary text-sm">Comming Soon...</p>
+                      <div className="flex items-center gap-2 mt-2 text-gray-400 text-sm">
+                        
+                      </div>
+                      <p className="mt-3 text-gray-400">
+                      A curated personal handbook crafted by Yash Gaikwad (a.k.a Yaxploit), compiling years of offensive cybersecurity knowledge, practical exploitation checklists, hunting playbooks, CTF methodologies, and personal strategies. This playbook bridges the gap between raw hacker instinct and structured offensive security practices, serving as a trusted companion for bug hunters, penetration testers, and red teamers
+                      </p>
+                    </div>
+                  </div>
+                </div>
             </TabsContent>
           </Tabs>
 
