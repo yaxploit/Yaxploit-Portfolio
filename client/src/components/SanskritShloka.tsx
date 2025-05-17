@@ -11,18 +11,14 @@ const SanskritShloka = () => {
       style={{ width: 'fit-content' }}
     >
       <div className="text-center">
-        <h3 className="text-xl md:text-2xl font-sanskrit mb-1 text-accent">
-        शस्त्रं नास्ति समं ज्ञानं, नास्ति शक्तिः विचारतः।<br></br>
-        संगणके यः विजानीते, स एव जयति संग्रामे॥
+        <h3 className="text-base md:text-lg font-sanskrit mb-1 text-accent">
+        ॥ शस्त्रं नास्ति समं ज्ञानं, नास्ति शक्तिः विचारतः।<br />
+          संगणके यः विजानीते, स एव जयति संग्रामे॥
         </h3>
-        {/*<p className="text-gray-300 italic mb-1 text-sm md:text-base">
-          "Śastraṁ nāsti samaṁ jñānaṁ, nāsti śaktiḥ vicārataḥ.
-          Saṅgaṇake yaḥ vijānīte, sa eva jayati saṅgrāme."
-        </p> */}
         <p className="text-gray-400 text-xs md:text-sm">
         There is no weapon as powerful as knowledge,
          nor any strength greater than critical thinking.
-          He who understands systems,<br></br>
+          He who understands systems,
            is the one who triumphs in the battlefield.
         </p>
       </div>
