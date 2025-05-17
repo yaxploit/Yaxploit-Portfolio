@@ -4,6 +4,8 @@ import { FaLinkedin, FaGithub } from 'react-icons/fa';
 import { SiHackerone, SiTryhackme, SiBugcrowd } from 'react-icons/si';
 import Typewriter from 'typewriter-effect';
 import StarBackground from './StarBackground';
+import SanskritShloka from './SanskritShloka';
+import '@/styles/sanskrit-font.css';
 
 const roles = [
   'A Cybersecurity Enthusiast',
@@ -66,6 +68,8 @@ const HeroSection = () => {
 Specializing in red teaming, bug bounty hunting, and pushing systems beyond their limits.
 I don't just secure; I exploit to understand, dismantle, and reinforce from the attacker's lens.
           </motion.p>
+
+          <SanskritShloka />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
