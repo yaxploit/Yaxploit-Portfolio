@@ -7,7 +7,7 @@ const SanskritShloka = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
-      className="mx-auto mb-6 px-8 py-4 bg-black/40 backdrop-blur-sm border border-accent/30 rounded-full shadow-lg flex flex-col items-center max-w-3xl min-w-[320px]"
+      className="hidden md:flex mx-auto mb-6 px-8 py-4 bg-black/40 backdrop-blur-sm border border-accent/30 rounded-full shadow-lg flex-col items-center max-w-3xl min-w-[320px]"
       style={{ width: 'fit-content' }}
     >
       <div className="text-center">
