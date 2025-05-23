@@ -3,20 +3,12 @@ import { motion } from 'framer-motion';
 const SanskritShloka = () => {
   return (
     <motion.div
-      whileHover={{ scale: 1.02, boxShadow: '0 8px 32px 0 rgba(80,80,180,0.18)' }}
+      whileHover={{ scale: 1.04, boxShadow: '0 8px 32px 0 rgba(80,80,180,0.18)' }}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.5,
-        ease: "easeOut",
-        opacity: { duration: 0.3 }
-      }}
+      transition={{ duration: 0.8 }}
       className="hidden md:flex mx-auto mb-6 px-8 py-4 bg-black/40 backdrop-blur-sm border border-accent/30 rounded-full shadow-lg flex-col items-center max-w-3xl min-w-[320px]"
-      style={{ 
-        width: 'fit-content',
-        willChange: 'transform, opacity',
-        transform: 'translateZ(0)'
-      }}
+      style={{ width: 'fit-content' }}
     >
       <div className="text-center">
         <h3 className="text-base md:text-lg font-sanskrit mb-1 text-accent">

@@ -126,14 +126,12 @@ const StarBackground = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d', { alpha: false }); // Optimize for non-transparent canvas
+    const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
     const resizeCanvas = () => {
       if (!canvas) return;
-      // Lower device pixel ratio on mobile for better performance
-      const isMobile = window.innerWidth < 768;
-      const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2); // Cap DPR at 2
+      const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
       
       canvas.width = rect.width * dpr;
@@ -143,8 +141,7 @@ const StarBackground = () => {
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
 
-      // Fewer stars on mobile for smoother performance
-      const baseDensity = isMobile ? 3500 : 2000; // Reduced star density
+      const baseDensity = 2000;
       const starCount = Math.floor((rect.width * rect.height) / baseDensity);
       starsRef.current = Array.from({ length: starCount }, () => new Star(canvas));
       shootingStarsRef.current = [];
@@ -166,7 +163,7 @@ const StarBackground = () => {
     if (!ctx) return;
 
     // Clear with a slight fade effect
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; // Increased opacity for better performance
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     // Update and draw regular stars
@@ -178,11 +175,7 @@ const StarBackground = () => {
 
     // Add new shooting star randomly
     const now = Date.now();
-    const isMobile = window.innerWidth < 768;
-    // Make shooting stars less frequent and slower on mobile
-    const shootingStarChance = isMobile ? 0.02 : 0.08; // Reduced frequency
-    const shootingStarInterval = isMobile ? 5000 : 2000; // Increased interval
-    if (now - lastShootingStarTime.current > shootingStarInterval && Math.random() < shootingStarChance) {
+    if (now - lastShootingStarTime.current > 2000 && Math.random() < 0.1) {
       shootingStarsRef.current.push(new ShootingStar(canvas));
       lastShootingStarTime.current = now;
     }

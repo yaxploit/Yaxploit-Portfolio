@@ -36,8 +36,6 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Primary body styles */
@@ -48,7 +46,6 @@
     background-position: -15px -15px;
     overflow-x: hidden;
     letter-spacing: -0.01em;
-    will-change: transform;
   }
   
   /* Font weight clarity classes */
