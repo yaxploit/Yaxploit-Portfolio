@@ -126,25 +126,25 @@ const StarBackground = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: false }); // Optimize for non-transparent canvas
     if (!ctx) return;
 
     const resizeCanvas = () => {
       if (!canvas) return;
       // Lower device pixel ratio on mobile for better performance
       const isMobile = window.innerWidth < 768;
-      const dpr = isMobile ? 1 : (window.devicePixelRatio || 1);
+      const dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2); // Cap DPR at 2
       const rect = canvas.getBoundingClientRect();
       
       canvas.width = rect.width * dpr;
       canvas.height = rect.height * dpr;
-      ctx.setTransform(1, 0, 0, 1, 0, 0); // Reset transform before scaling
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
       canvas.style.width = `${rect.width}px`;
       canvas.style.height = `${rect.height}px`;
 
       // Fewer stars on mobile for smoother performance
-      const baseDensity = isMobile ? 2500 : 1500;
+      const baseDensity = isMobile ? 3500 : 2000; // Reduced star density
       const starCount = Math.floor((rect.width * rect.height) / baseDensity);
       starsRef.current = Array.from({ length: starCount }, () => new Star(canvas));
       shootingStarsRef.current = [];
@@ -166,7 +166,7 @@ const StarBackground = () => {
     if (!ctx) return;
 
     // Clear with a slight fade effect
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.2)'; // Increased opacity for better performance
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
     // Update and draw regular stars
@@ -180,8 +180,8 @@ const StarBackground = () => {
     const now = Date.now();
     const isMobile = window.innerWidth < 768;
     // Make shooting stars less frequent and slower on mobile
-    const shootingStarChance = isMobile ? 0.04 : 0.15;
-    const shootingStarInterval = isMobile ? 3000 : 1000;
+    const shootingStarChance = isMobile ? 0.02 : 0.08; // Reduced frequency
+    const shootingStarInterval = isMobile ? 5000 : 2000; // Increased interval
     if (now - lastShootingStarTime.current > shootingStarInterval && Math.random() < shootingStarChance) {
       shootingStarsRef.current.push(new ShootingStar(canvas));
       lastShootingStarTime.current = now;

@@ -36,6 +36,8 @@
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
     text-rendering: optimizeLegibility;
     scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Primary body styles */
@@ -46,6 +48,7 @@
     background-position: -15px -15px;
     overflow-x: hidden;
     letter-spacing: -0.01em;
+    will-change: transform;
   }
   
   /* Font weight clarity classes */
@@ -59,6 +62,7 @@
   .font-extrabold { font-weight: 800 !important; }
   .font-black { font-weight: 900 !important; }
 
+  /* Optimized animations */
   @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
@@ -68,6 +72,39 @@
     0% { opacity: 0.2; }
     50% { opacity: 0.5; }
     100% { opacity: 0.2; }
+  }
+
+  /* Performance optimizations */
+  .typewriter-wrapper {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  .card-hover-effect {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glow-border {
+    transition: border-color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Optimize image rendering */
+  img {
+    content-visibility: auto;
+  }
+
+  /* Optimize animations for reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 
   .animate-float {
@@ -228,37 +265,6 @@
 @keyframes blink-caret {
   from, to { border-color: transparent }
   50% { border-color: #00ff00 }
-}
-
-/* Enhanced card hover effects */
-.card-hover-effect {
-  @apply transition-all duration-300 ease-in-out;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-}
-
-.card-hover-effect:hover {
-  @apply shadow-lg;
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: 0 0 20px rgba(162, 89, 255, 0.2);
-}
-
-/* Glowing border effect */
-.glow-border {
-  @apply relative;
-}
-
-.glow-border::before {
-  content: '';
-  @apply absolute inset-0 rounded-lg;
-  background: linear-gradient(45deg, #a259ff, #00ffaa);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: -1;
-}
-
-.glow-border:hover::before {
-  opacity: 0.5;
 }
 
 /* Smooth scrollbar */
