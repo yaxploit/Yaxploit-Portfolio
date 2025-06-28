@@ -3,6 +3,17 @@ import React, { useState } from "react";
 // Example experience data structure
 const experienceData = [
   {
+    title: "CyberPolice Intern",
+    company: "Amroha Police",
+    companyUrl: "#",
+    date: "June 2025 - Julay 2025",
+    type: "Full-time",
+    location: "Uttar Pradesh, India",
+    mode: "Remote",
+    tags: ["Digital Forensics", "Cybercrime Investigations", "Darkweb Investigations", "Crypto Forensics", "Bug Bounty"],
+    category: "CYBERPOLICE",
+  },
+  {
     title: "VAPT Intern",
     company: "AlGOVIZ Solutions",
     companyUrl: "#",
